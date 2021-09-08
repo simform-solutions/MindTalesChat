@@ -1,5 +1,4 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {Image} from 'react-native';
 import {NavigationRoutes} from '../constants';
@@ -10,8 +9,14 @@ import SplashScreen from '../modules/Splash/SplashScreen';
 import {Colors, Icons} from '../theme';
 import {navigationRef} from './services/navigationServices';
 import styles from './styles/AppNavigationStyles';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
+import ProfileScreen from '../modules/Profile/ProfileScreen';
+import ChatScreen from '../modules/Chat/ChatScreen';
 
 const RootStack = createStackNavigator();
+const DashBoardStack = createBottomTabNavigator();
+
 const renderImage = () => {
   return <Image source={Icons.back} />;
 };
@@ -45,8 +50,7 @@ const AuthStack = () => {
     </RootStack.Navigator>
   );
 };
-
-const HomeStack = () => {
+const ChatStack = () => {
   return (
     <RootStack.Navigator screenOptions={stackScreenOptions}>
       <RootStack.Screen
@@ -54,7 +58,65 @@ const HomeStack = () => {
         options={{headerShown: false}}
         component={HomeScreen}
       />
+      <RootStack.Screen
+        name={NavigationRoutes.ChatScreen}
+        options={{headerShown: false}}
+        component={ChatScreen}
+      />
     </RootStack.Navigator>
+  );
+};
+const getTabBarVisibility = route => {
+  const routeName = route.state
+    ? route.state.routes[route.state.index].name
+    : '';
+
+  if (routeName === NavigationRoutes.ChatScreen) {
+    return false;
+  }
+
+  return true;
+};
+const HomeStack = () => {
+  return (
+    <DashBoardStack.Navigator
+      screenOptions={({route}) => ({
+        // tabBarIcon: ({focused, color, size}) => {
+        //   let iconName;
+        //   if (route.name === 'Chat') {
+        //     iconName = focused
+        //       ? 'chat-processing'
+        //       : 'chat-processing-outline';
+        //   } else if (route.name === 'Profile') {
+        //     iconName = focused ? 'face-profile' : 'face-profile-woman';
+        //   }
+        //   // You can return any component that you like here!
+        //   return <Ionicons name={iconName} size={size} color={color} />;
+        // },
+      })}
+      tabBarOptions={{
+        activeTintColor: Colors.primary,
+        inactiveTintColor: Colors.secondary,
+        upperCaseLabel: true,
+        tabStyle: {
+          width: 'auto',
+        },
+        labelStyle: {
+          fontSize: 15,
+          margin: 0,
+          fontWeight: '500',
+          padding: 0,
+        },
+      }}>
+      <DashBoardStack.Screen
+        name={'Chat'}
+        options={({route}) => ({
+          tabBarVisible: getTabBarVisibility(route),
+        })}
+        component={ChatStack}
+      />
+      <DashBoardStack.Screen name={'Profile'} component={ProfileScreen} />
+    </DashBoardStack.Navigator>
   );
 };
 

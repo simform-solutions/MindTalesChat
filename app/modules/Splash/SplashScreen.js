@@ -5,7 +5,7 @@ import styles from './styles/SplashScreenStyles';
 const SplashScreen = () => (
   <View style={styles.container}>
     <StatusBar barStyle="dark-content" />
-    <Text style={styles.textStyle}>{'SimformRN'}</Text>
+    <Text style={styles.textStyle}>{'MindTales Chat'}</Text>
   </View>
 );
 

@@ -4,7 +4,7 @@ import {Colors, scale, verticalScale, Fonts} from '../../theme';
 const styles = StyleSheet.create({
   headerContainer: {
     width: '100%',
-    height: verticalScale(60),
+    height: verticalScale(80),
     backgroundColor: Colors.primary,
     flexDirection: 'row',
     alignItems: 'center',
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconStyle: {
-    height: verticalScale(30),
+    height: verticalScale(20),
     width: scale(30),
     resizeMode: 'contain',
   },

@@ -6,10 +6,10 @@ const colors = {
   green: 'rgb(19, 213, 33)',
   red: 'rgb(244, 67, 54)',
   lightSkyBlue: 'rgb(106, 207, 210)',
-  primary: '#EF5366',
-  secondary: '#29DED5',
+  primary: '#a78bfa',
+  secondary: '#d8b4fe',
   neutral: '#3D3D3D',
-  rosyBrown: '#FFC1C1',
+  rosyBrown: '#e9d5ff',
 };
 
 export default colors;

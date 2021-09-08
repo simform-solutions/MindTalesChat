@@ -5,7 +5,6 @@ import {
   Colors,
   moderateScale,
   verticalScale,
-  scale,
 } from '../../../theme';
 
 const styles = StyleSheet.create({
@@ -13,12 +12,6 @@ const styles = StyleSheet.create({
   ...ApplicationStyles.form,
   alignCenter: {
     alignItems: 'center',
-  },
-  profilePic: {
-    height: scale(118),
-    width: scale(118),
-    borderRadius: scale(118) / 2,
-    resizeMode: 'cover',
   },
   titleText: {
     fontSize: moderateScale(25),
@@ -35,18 +28,7 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     flexGrow: 1,
-    // justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bottomView: {
-    marginTop: verticalScale(20),
-  },
-  signupText: {
-    fontSize: moderateScale(15),
-    fontFamily: Fonts.type.bold,
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-    color: Colors.primary,
+    justifyContent: 'center',
   },
 });
 

@@ -15,6 +15,8 @@ const strings = {
   inValidName: 'Must be 15 characters or less',
   noProfilePic: 'Please upload a profile picture',
   ok: 'Ok',
+  submit: 'Submit',
+  chat: 'Chat',
 };
 
 export default strings;

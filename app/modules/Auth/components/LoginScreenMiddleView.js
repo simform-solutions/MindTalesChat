@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React, {createRef, useCallback} from 'react';
-import {Keyboard, View} from 'react-native';
+import {Keyboard, Text, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {CustomButton, CustomTextInput} from '../../../components';
 import {Strings} from '../../../constants';
@@ -44,18 +44,20 @@ const renderEmailTextInput = ({
   touched,
   values,
 }: renderEmailTextInputTypes) => (
-  <CustomTextInput
-    ref={inputRef.email}
-    autoCapitalize={'none'}
-    keyboardType={'email-address'}
-    style={styles.textInput}
-    placeholder={Strings.emailPlaceholder}
-    value={values.email}
-    error={touched.email && errors.email}
-    onBlur={handleBlur('email')}
-    onChangeText={handleChange('email')}
-    onSubmitEditing={() => inputRef.password.current.focus()}
-  />
+  <View>
+    <CustomTextInput
+      ref={inputRef.email}
+      autoCapitalize={'none'}
+      keyboardType={'email-address'}
+      style={styles.textInput}
+      placeholder={Strings.emailPlaceholder}
+      value={values.email}
+      error={touched.email && errors.email}
+      onBlur={handleBlur('email')}
+      onChangeText={handleChange('email')}
+      onSubmitEditing={() => inputRef.password.current.focus()}
+    />
+  </View>
 );
 
 const renderPasswordTextInput = ({
@@ -66,18 +68,20 @@ const renderPasswordTextInput = ({
   values,
   handleSubmit,
 }: renderPasswordTextInputTypes) => (
-  <CustomTextInput
-    secureTextEntry
-    ref={inputRef.password}
-    style={styles.textInput}
-    placeholder={Strings.passwordPlaceholder}
-    value={values.password}
-    error={touched.password && errors.password}
-    returnKeyType={'done'}
-    onSubmitEditing={handleSubmit}
-    onBlur={handleBlur('password')}
-    onChangeText={handleChange('password')}
-  />
+  <View>
+    <CustomTextInput
+      secureTextEntry
+      ref={inputRef.password}
+      style={styles.textInput}
+      placeholder={Strings.passwordPlaceholder}
+      value={values.password}
+      error={touched.password && errors.password}
+      returnKeyType={'done'}
+      onSubmitEditing={handleSubmit}
+      onBlur={handleBlur('password')}
+      onChangeText={handleChange('password')}
+    />
+  </View>
 );
 
 const renderLoginButton = ({
@@ -98,10 +102,13 @@ const renderLoginButton = ({
 };
 
 const renderLoginFormInputs = params => (
-  <View style={styles.formInputs}>
-    {renderEmailTextInput(params)}
-    {renderPasswordTextInput(params)}
-    {renderLoginButton(params)}
+  <View style={styles.renderFormInput}>
+    <View style={styles.formInputs}>
+      <Text style={styles.titleText}>{Strings.login}</Text>
+      {renderEmailTextInput(params)}
+      {renderPasswordTextInput(params)}
+      {renderLoginButton(params)}
+    </View>
   </View>
 );
 
@@ -111,7 +118,6 @@ const useLoginScreenMiddleView = () => {
 
   const onSubmitForm = useCallback(() => {
     Keyboard.dismiss();
-
     dispatch(AuthActions.authRequest());
     navigation.navigate('HomeStack');
   }, [dispatch, navigation]);

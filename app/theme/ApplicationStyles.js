@@ -1,3 +1,4 @@
+import colors from './Colors';
 import Colors from './Colors';
 import {Metrics, scale, verticalScale} from './Metrics';
 
@@ -8,7 +9,7 @@ const ApplicationStyles = {
   screen: {
     mainContainer: {
       flex: 1,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.primary,
     },
     backgroundImage: {
       position: 'absolute',
@@ -53,7 +54,7 @@ const ApplicationStyles = {
   },
   form: {
     textInput: {
-      height: verticalScale(45),
+      height: verticalScale(40),
       width: scale(300),
       borderRadius: scale(5),
       borderWidth: scale(1),
@@ -65,8 +66,17 @@ const ApplicationStyles = {
       padding: scale(10),
     },
     formInputs: {
-      marginTop: verticalScale(20),
+      marginTop: verticalScale(50),
       alignItems: 'center',
+    },
+    renderFormInput: {
+      backgroundColor: colors.white,
+      marginTop: 30,
+      width: '95%',
+      borderTopLeftRadius: 60,
+      borderBottomLeftRadius: 20,
+      borderBottomRightRadius: 20,
+      flex: 1,
     },
   },
 };

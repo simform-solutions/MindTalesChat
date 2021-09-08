@@ -5,5 +5,7 @@ const NavigationRoutes = {
   LoginScreen: 'LoginScreen',
   RegisterScreen: 'RegisterScreen',
   HomeScreen: 'HomeScreen',
+  ProfileScreen: 'ProfileScreen',
+  ChatScreen: 'ChatScreen',
 };
 export default NavigationRoutes;

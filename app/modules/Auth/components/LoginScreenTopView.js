@@ -1,9 +1,10 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Image} from 'react-native';
+import {Icons} from '../../../assets';
 import styles from '../styles/LoginScreenStyles';
 
 const LoginScreenTopView = () => {
-  return <Text style={styles.titleText}>{'Login'}</Text>;
+  return <Image style={styles.profilePic} source={Icons.applogo} />;
 };
 
 export default LoginScreenTopView;
