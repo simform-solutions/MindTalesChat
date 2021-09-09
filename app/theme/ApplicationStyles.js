@@ -54,7 +54,7 @@ const ApplicationStyles = {
   },
   form: {
     textInput: {
-      height: verticalScale(40),
+      height: verticalScale(50),
       width: scale(300),
       borderRadius: scale(5),
       borderWidth: scale(1),
@@ -71,8 +71,9 @@ const ApplicationStyles = {
     },
     renderFormInput: {
       backgroundColor: colors.white,
-      marginTop: 30,
+      marginTop: scale(30),
       width: '95%',
+      marginBottom: scale(10),
       borderTopLeftRadius: 60,
       borderBottomLeftRadius: 20,
       borderBottomRightRadius: 20,

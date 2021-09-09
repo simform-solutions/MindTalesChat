@@ -1,11 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
-import { Container, Content } from 'native-base';
-import { Icons } from '../../assets';
-import { CustomHeader } from '../../components';
+import {useNavigation} from '@react-navigation/native';
+import {Container, Content} from 'native-base';
+import {Icons} from '../../assets';
+import {CustomHeader} from '../../components';
 import styles from './styles/ChatScreenStyle';
-import React, { useCallback, useEffect, useState } from 'react';
-import { GiftedChat } from 'react-native-gifted-chat';
-import { Colors } from '../../theme';
+import React, {useCallback, useEffect, useState} from 'react';
+import {GiftedChat} from 'react-native-gifted-chat';
+import {Colors} from '../../theme';
 const ChatScreen = () => {
   const navigation = useNavigation();
   const [messages, setMessages] = useState([]);
@@ -34,10 +34,10 @@ const ChatScreen = () => {
     <GiftedChat
       messages={messages}
       scrollToBottom
-      lightboxProps={{color:Colors.primary}}
+      lightboxProps={{color: Colors.primary}}
       onSend={messages => onSend(messages)}
-      timeTextStyle={{ left: { color: 'red' }, right: { color: 'yellow' } }}
-      sty={{backgroundColor:Colors.primary}}
+      timeTextStyle={{left: {color: 'red'}, right: {color: 'yellow'}}}
+      sty={{backgroundColor: Colors.primary}}
       user={{
         _id: 1,
       }}
@@ -50,10 +50,6 @@ const ChatScreen = () => {
         title={'User 1'}
         leftIcon={Icons.back}
         leftOnPress={() => navigation.goBack()}
-      />
-      <Content
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.contentContainerStyle}
       />
       <ChatView />
     </Container>

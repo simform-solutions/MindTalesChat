@@ -4,7 +4,20 @@ export const apiConfig = baseURL =>
   apisauce.create({
     baseURL,
     timeout: 30000,
-    headers: {'Cache-Control': 'no-cache'},
+    headers: {
+      'Cache-Control': 'no-cache',
+    },
+  });
+
+export const chatApiConfig = baseURL =>
+  apisauce.create({
+    baseURL,
+    timeout: 30000,
+    headers: {
+      'X-Master-Key':
+        '$2b$10$/zbjBjes6GA.U/KR21Tav.mnw5VMPJmb0Xa6CnDeYh3sVe0ZO5LYO',
+      'X-Bin-Meta': 'false',
+    },
   });
 
 export async function getError(response) {

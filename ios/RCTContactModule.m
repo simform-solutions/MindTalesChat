@@ -59,7 +59,8 @@ RCT_EXPORT_METHOD(getContacts: (RCTResponseSenderBlock)cb)
              NSString *phoneNumber = @"";
              if( contact.phoneNumbers)
                  phoneNumber = [[[contact.phoneNumbers firstObject] value] stringValue];
-                       [contactList addObject:phoneNumber];
+                       [contactList addObject: phoneNumber];
+
          }];
       
 
