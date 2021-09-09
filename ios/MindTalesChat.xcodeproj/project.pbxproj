@@ -13,6 +13,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		5A0D867C8E263EA54E217397 /* libPods-MindTalesChat-MindTalesChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4643DD669C65A66B66E3FBA2 /* libPods-MindTalesChat-MindTalesChatTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BCBD760126E9CB2C00A97758 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBD760026E9CB2C00A97758 /* Contacts.framework */; };
+		BCBD760326E9CC1200A97758 /* RCTContactModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBD760226E9CC1200A97758 /* RCTContactModule.m */; };
+		BCBD760426E9CC1200A97758 /* RCTContactModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBD760226E9CC1200A97758 /* RCTContactModule.m */; };
 		C095AC18E41336DDEEA9D203 /* libPods-MindTalesChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 542842A9F7AF8B7A528550B7 /* libPods-MindTalesChat.a */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,9 @@
 		542842A9F7AF8B7A528550B7 /* libPods-MindTalesChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MindTalesChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MindTalesChat/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8B7A44854B1973A5BCFF6B3 /* Pods-MindTalesChat-MindTalesChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MindTalesChat-MindTalesChatTests.debug.xcconfig"; path = "Target Support Files/Pods-MindTalesChat-MindTalesChatTests/Pods-MindTalesChat-MindTalesChatTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BCBD760026E9CB2C00A97758 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		BCBD760226E9CC1200A97758 /* RCTContactModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTContactModule.m; sourceTree = "<group>"; };
+		BCBD760526E9CC2B00A97758 /* RCTContactModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTContactModule.h; sourceTree = "<group>"; };
 		DDAAF70416268B81565D3A56 /* Pods-MindTalesChat-MindTalesChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MindTalesChat-MindTalesChatTests.release.xcconfig"; path = "Target Support Files/Pods-MindTalesChat-MindTalesChatTests/Pods-MindTalesChat-MindTalesChatTests.release.xcconfig"; sourceTree = "<group>"; };
 		E349C44D758940D3008C9730 /* Pods-MindTalesChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MindTalesChat.debug.xcconfig"; path = "Target Support Files/Pods-MindTalesChat/Pods-MindTalesChat.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -59,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCBD760126E9CB2C00A97758 /* Contacts.framework in Frameworks */,
 				C095AC18E41336DDEEA9D203 /* libPods-MindTalesChat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +99,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				BCBD760226E9CC1200A97758 /* RCTContactModule.m */,
+				BCBD760526E9CC2B00A97758 /* RCTContactModule.h */,
 			);
 			name = MindTalesChat;
 			sourceTree = "<group>";
@@ -99,6 +108,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCBD760026E9CB2C00A97758 /* Contacts.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				542842A9F7AF8B7A528550B7 /* libPods-MindTalesChat.a */,
 				4643DD669C65A66B66E3FBA2 /* libPods-MindTalesChat-MindTalesChatTests.a */,
@@ -145,7 +155,6 @@
 				B8B7A44854B1973A5BCFF6B3 /* Pods-MindTalesChat-MindTalesChatTests.debug.xcconfig */,
 				DDAAF70416268B81565D3A56 /* Pods-MindTalesChat-MindTalesChatTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -367,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCBD760426E9CC1200A97758 /* RCTContactModule.m in Sources */,
 				00E356F31AD99517003FC87E /* MindTalesChatTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCBD760326E9CC1200A97758 /* RCTContactModule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);

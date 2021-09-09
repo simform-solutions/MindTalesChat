@@ -15,7 +15,7 @@ const CustomTextInput = (
   {
     style,
     error,
-    placeholderTextColor = Colors.lightSkyBlue,
+    placeholderTextColor = Colors.primary,
     blurOnSubmit = false,
     returnKeyType = 'next',
     ...otherProps

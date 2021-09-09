@@ -1,18 +1,20 @@
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import {Image} from 'react-native';
-import {NavigationRoutes} from '../constants';
+import { Image } from 'react-native';
+import { NavigationRoutes } from '../constants';
 import LoginScreen from '../modules/Auth/LoginScreen';
 import RegisterScreen from '../modules/Auth/RegisterScreen';
 import HomeScreen from '../modules/Home/HomeScreen';
 import SplashScreen from '../modules/Splash/SplashScreen';
-import {Colors, Icons} from '../theme';
-import {navigationRef} from './services/navigationServices';
+import { Colors, Icons } from '../theme';
+import { navigationRef } from './services/navigationServices';
 import styles from './styles/AppNavigationStyles';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import ProfileScreen from '../modules/Profile/ProfileScreen';
 import ChatScreen from '../modules/Chat/ChatScreen';
+import ContactScreen from '../modules/Contact/ContactScreen';
+import icons from '../assets/icons';
 
 const RootStack = createStackNavigator();
 const DashBoardStack = createBottomTabNavigator();
@@ -39,12 +41,12 @@ const AuthStack = () => {
     <RootStack.Navigator screenOptions={stackScreenOptions}>
       <RootStack.Screen
         name={NavigationRoutes.LoginScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={LoginScreen}
       />
       <RootStack.Screen
         name={NavigationRoutes.RegisterScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={RegisterScreen}
       />
     </RootStack.Navigator>
@@ -55,13 +57,18 @@ const ChatStack = () => {
     <RootStack.Navigator screenOptions={stackScreenOptions}>
       <RootStack.Screen
         name={NavigationRoutes.HomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={HomeScreen}
       />
       <RootStack.Screen
         name={NavigationRoutes.ChatScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={ChatScreen}
+      />
+      <RootStack.Screen
+        name={NavigationRoutes.ContactScreen}
+        options={{ headerShown: false }}
+        component={ContactScreen}
       />
     </RootStack.Navigator>
   );
@@ -71,7 +78,7 @@ const getTabBarVisibility = route => {
     ? route.state.routes[route.state.index].name
     : '';
 
-  if (routeName === NavigationRoutes.ChatScreen) {
+  if (routeName === NavigationRoutes.ChatScreen || NavigationRoutes.ContactScreen) {
     return false;
   }
 
@@ -80,20 +87,19 @@ const getTabBarVisibility = route => {
 const HomeStack = () => {
   return (
     <DashBoardStack.Navigator
-      screenOptions={({route}) => ({
-        // tabBarIcon: ({focused, color, size}) => {
+      screenOptions={({ route }) => ({
+        // tabBarIcon: ({ focused, color, size }) => {
         //   let iconName;
         //   if (route.name === 'Chat') {
         //     iconName = focused
-        //       ? 'chat-processing'
-        //       : 'chat-processing-outline';
-        //   } else if (route.name === 'Profile') {
-        //     iconName = focused ? 'face-profile' : 'face-profile-woman';
+        //       ? icons.chat
+        //       : icons.newchat;
         //   }
         //   // You can return any component that you like here!
-        //   return <Ionicons name={iconName} size={size} color={color} />;
+        //   return <Image source={iconName} width={20} height={20} color={color} />;
         // },
-      })}
+      })
+    }
       tabBarOptions={{
         activeTintColor: Colors.primary,
         inactiveTintColor: Colors.secondary,
@@ -110,7 +116,7 @@ const HomeStack = () => {
       }}>
       <DashBoardStack.Screen
         name={'Chat'}
-        options={({route}) => ({
+        options={({ route }) => ({
           tabBarVisible: getTabBarVisibility(route),
         })}
         component={ChatStack}
@@ -127,17 +133,17 @@ const AppNavigation = () => {
       <RootStack.Navigator screenOptions={stackScreenOptions}>
         <RootStack.Screen
           name={NavigationRoutes.SplashScreen}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
           component={SplashScreen}
         />
         <RootStack.Screen
           name={NavigationRoutes.AuthStack}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
           component={AuthStack}
         />
         <RootStack.Screen
           name={NavigationRoutes.HomeStack}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
           component={HomeStack}
         />
       </RootStack.Navigator>

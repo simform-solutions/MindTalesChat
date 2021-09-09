@@ -1,11 +1,11 @@
-import {Container, Content} from 'native-base';
+import { Container, Content } from 'native-base';
 import React from 'react';
-import {FlatList, Image, Text, View} from 'react-native';
-import {FloatingAction} from 'react-native-floating-action';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {CustomHeader} from '../../components';
-import {NavigationRoutes, Strings} from '../../constants';
-import {Icons, Images} from '../../theme';
+import { FlatList, Image, Text, View } from 'react-native';
+import { FloatingAction } from 'react-native-floating-action';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { CustomHeader } from '../../components';
+import { NavigationRoutes, Strings } from '../../constants';
+import { Icons, Images } from '../../theme';
 import colors from '../../theme/Colors';
 import styles from './styles/HomeScreenStyle';
 
@@ -17,7 +17,7 @@ class HomeScreen extends React.Component {
   floatAction = [
     {
       text: 'New Chat',
-      icon: Icons.edit,
+      icon: Icons.newchat,
       name: 'bt_accessibility',
       color: colors.primary,
       position: 2,
@@ -25,7 +25,7 @@ class HomeScreen extends React.Component {
   ];
 
   navigateToScreen = name => {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     navigate(name);
   };
 
@@ -51,14 +51,14 @@ class HomeScreen extends React.Component {
           <Content>
             <FlatList
               data={this.data}
-              renderItem={({item, index}) => this.renderRow(item)}
+              renderItem={({ item, index }) => this.renderRow(item)}
             />
           </Content>
           <FloatingAction
             color={colors.primary}
             actions={this.floatAction}
             onPressItem={name => {
-              this.navigateToScreen(NavigationRoutes.ChatScreen);
+              this.navigateToScreen(NavigationRoutes.ContactScreen);
             }}
           />
         </View>
