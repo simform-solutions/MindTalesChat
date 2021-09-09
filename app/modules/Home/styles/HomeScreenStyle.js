@@ -11,17 +11,19 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: 'row',
-    margin: 10,
-    width: '100%',
+    marginHorizontal: scale(15),
+    marginVertical: scale(5),
     alignItems: 'center',
   },
-  itemContainer: {paddingHorizontal: 10},
+  itemContainer: {padding: scale(15)},
   nameStyle: {
     fontSize: 15,
     fontWeight: '500',
   },
   msgStyle: {
-    fontSize: 12,
+    fontSize: scale(12),
+    color: 'gray',
+    marginEnd: scale(20),
   },
 });
 

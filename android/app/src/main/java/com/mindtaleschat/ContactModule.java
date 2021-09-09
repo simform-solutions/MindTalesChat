@@ -65,7 +65,7 @@ public class ContactModule extends ReactContextBaseJavaModule {
                      Cursor phones = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ id,null, null);
                      while (phones.moveToNext()) {
                          String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                         arrayList.add(phoneNumber);
+                         arrayList.add(name);
                      }
                      phones.close();
                  }

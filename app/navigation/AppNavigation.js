@@ -3,7 +3,6 @@ import React from 'react';
 import {Image} from 'react-native';
 import {NavigationRoutes} from '../constants';
 import LoginScreen from '../modules/Auth/LoginScreen';
-import RegisterScreen from '../modules/Auth/RegisterScreen';
 import HomeScreen from '../modules/Home/HomeScreen';
 import SplashScreen from '../modules/Splash/SplashScreen';
 import {Colors, Icons} from '../theme';
@@ -12,13 +11,14 @@ import styles from './styles/AppNavigationStyles';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import ProfileScreen from '../modules/Profile/ProfileScreen';
+import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
+
 import ChatScreen from '../modules/Chat/ChatScreen';
 import ContactScreen from '../modules/Contact/ContactScreen';
-import icons from '../assets/icons';
+// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const RootStack = createStackNavigator();
 const DashBoardStack = createBottomTabNavigator();
-
 const renderImage = () => {
   return <Image source={Icons.back} />;
 };
@@ -44,10 +44,21 @@ const AuthStack = () => {
         options={{headerShown: false}}
         component={LoginScreen}
       />
+    </RootStack.Navigator>
+  );
+};
+const ProfileStack = () => {
+  return (
+    <RootStack.Navigator screenOptions={stackScreenOptions}>
       <RootStack.Screen
-        name={NavigationRoutes.RegisterScreen}
+        name={NavigationRoutes.ViewProfileScreen}
         options={{headerShown: false}}
-        component={RegisterScreen}
+        component={ViewProfileScreen}
+      />
+      <RootStack.Screen
+        name={NavigationRoutes.ProfileScreen}
+        options={{headerShown: false}}
+        component={ProfileScreen}
       />
     </RootStack.Navigator>
   );
@@ -79,35 +90,26 @@ const getTabBarVisibility = route => {
     : '';
 
   if (
-    routeName ===
-    (NavigationRoutes.HomeScreen || NavigationRoutes.ProfileScreen)
+    routeName === NavigationRoutes.ChatScreen ||
+    routeName === NavigationRoutes.ContactScreen ||
+    routeName === NavigationRoutes.ProfileScreen
   ) {
-    return true;
+    return false;
   }
 
-  return false;
+  return true;
 };
 const HomeStack = () => {
   return (
     <DashBoardStack.Navigator
-      screenOptions={({route}) => ({
-        // tabBarIcon: ({ focused, color, size }) => {
-        //   let iconName;
-        //   if (route.name === 'Chat') {
-        //     iconName = focused
-        //       ? icons.chat
-        //       : icons.newchat;
-        //   }
-        //   // You can return any component that you like here!
-        //   return <Image source={iconName} width={20} height={20} color={color} />;
-        // },
-      })}
       tabBarOptions={{
         activeTintColor: Colors.primary,
         inactiveTintColor: Colors.secondary,
         upperCaseLabel: true,
         tabStyle: {
           width: 'auto',
+          alignItems: 'center',
+          justifyContent: 'center',
         },
         labelStyle: {
           fontSize: 15,
@@ -115,15 +117,38 @@ const HomeStack = () => {
           fontWeight: '500',
           padding: 0,
         },
+        style: {
+          shadowOffset: {width: 0, height: 2},
+          shadowColor: Colors.tabBarShadow,
+          shadowOpacity: 0.2,
+          shadowRadius: 7,
+          elevation: 7,
+        },
       }}>
       <DashBoardStack.Screen
         name={'Chat'}
         options={({route}) => ({
           tabBarVisible: getTabBarVisibility(route),
+          // tabBarIcon: ({ color, size }) => (
+          //   <MaterialCommunityIcons name="chat" color={color} size={size} />
+          // ),
         })}
         component={ChatStack}
       />
-      <DashBoardStack.Screen name={'Profile'} component={ProfileScreen} />
+      <DashBoardStack.Screen
+        name={'Profile'}
+        options={({route}) => ({
+          tabBarVisible: getTabBarVisibility(route),
+          // tabBarIcon: ({ color, size }) => (
+          //   <MaterialCommunityIcons
+          //     name="account-circle"
+          //     color={color}
+          //     size={size}
+          //   />
+          // ),
+        })}
+        component={ProfileStack}
+      />
     </DashBoardStack.Navigator>
   );
 };

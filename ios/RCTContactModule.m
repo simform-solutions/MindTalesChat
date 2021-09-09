@@ -47,7 +47,7 @@ RCT_EXPORT_METHOD(getContacts: (RCTResponseSenderBlock)cb)
         CNContactStore *contactStore = [[CNContactStore alloc] init];
         //Select the contact you want to import the key attribute  ( https://developer.apple.com/library/watchos/documentation/Contacts/Reference/CNContact_Class/index.html#//apple_ref/doc/constant_group/Metadata_Keys )
 
-        NSArray *keys = [[NSArray alloc]initWithObjects:CNContactIdentifierKey, CNContactEmailAddressesKey, CNContactBirthdayKey, CNContactImageDataKey, CNContactPhoneNumbersKey,  nil];
+        NSArray *keys = [[NSArray alloc]initWithObjects:CNContactIdentifierKey,CNContactFamilyNameKey,CNContactGivenNameKey, CNContactEmailAddressesKey, CNContactBirthdayKey, CNContactImageDataKey, CNContactPhoneNumbersKey,  nil];
         // Create a request object
         CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:keys];
         request.predicate = nil;
@@ -55,11 +55,8 @@ RCT_EXPORT_METHOD(getContacts: (RCTResponseSenderBlock)cb)
                                                   error:nil
                                              usingBlock:^(CNContact* __nonnull contact, BOOL* __nonnull stop)
          {
-             // Contact one each function block is executed whenever you get
-             NSString *phoneNumber = @"";
-             if( contact.phoneNumbers)
-                 phoneNumber = [[[contact.phoneNumbers firstObject] value] stringValue];
-                       [contactList addObject: phoneNumber];
+             if(contact.givenName)
+                       [contactList addObject: contact.givenName];
 
          }];
       

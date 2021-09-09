@@ -6,7 +6,7 @@ function* handleResponse(response) {
   if (response?.status === 200) {
     yield put(
       ChatActions.chatSuccess({
-        ...response.data.videos,
+        ...response.data,
       }),
     );
   } else {
@@ -16,7 +16,5 @@ function* handleResponse(response) {
 }
 export function* ChatData(api, action) {
   const response = yield call(api.getChatData, action.payload);
-  console.log('--ChatData----', JSON.stringify(response));
-
   yield* handleResponse(response);
 }

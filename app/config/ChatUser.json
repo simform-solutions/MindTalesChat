@@ -1,0 +1,12 @@
+{
+    "data": {
+        "user": [
+            {
+                "_id": 2,
+                "name": "Michel",
+                "avatar": "https://placeimg.com/140/140/any",
+                "lastMessage": "Must be nice. We don’t have time for sleep, we have to drink a lot of coffee."
+            }
+        ]
+    }
+}

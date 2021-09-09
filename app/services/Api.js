@@ -3,7 +3,7 @@ import {apiConfig, chatApiConfig} from './Utils';
 
 const api = apiConfig(__DEV__ ? Secrets.API_URL_DEBUG : Secrets.API_URL);
 const chatApi = chatApiConfig(
-  'https://api.jsonbin.io/V3/b/6139ad909548541c29ae9bd7',
+  'https://api.jsonbin.io/b/613a1aa79548541c29aed6c0',
 );
 
 const auth = () => {

@@ -2,8 +2,10 @@ const NavigationRoutes = {
   SplashScreen: 'SplashScreen',
   AuthStack: 'AuthStack',
   HomeStack: 'HomeStack',
+  ProfileStack: 'ProfileStack',
+
   LoginScreen: 'LoginScreen',
-  RegisterScreen: 'RegisterScreen',
+  ViewProfileScreen: 'ViewProfileScreen',
   HomeScreen: 'HomeScreen',
   ProfileScreen: 'ProfileScreen',
   ChatScreen: 'ChatScreen',

@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   alignCenter: {
     alignItems: 'center',
   },
+
   titleText: {
     fontSize: moderateScale(25),
     fontFamily: Fonts.type.bold,

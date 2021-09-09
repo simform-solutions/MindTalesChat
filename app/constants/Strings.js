@@ -17,6 +17,15 @@ const strings = {
   ok: 'Ok',
   submit: 'Submit',
   chat: 'Chat',
+  userName: 'Michel',
+  latestMessage:
+    'Must be nice. We don’t have time for sleep, we have to drink a lot of coffee.',
+  selectContact: 'Select Contact',
+  errorContact: 'Please add contacts',
+  newChat: 'New Chat',
+  viewProfile: 'View Profile',
+  profile: 'Profile',
+
 };
 
 export default strings;

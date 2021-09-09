@@ -12,18 +12,13 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: 'row',
-    margin: 10,
-    width: '100%',
+    margin: scale(10),
     alignItems: 'center',
   },
-  itemContainer: {paddingHorizontal: 10},
   textStyle: {
-    fontSize: scale(15),
+    fontSize: scale(12),
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  msgStyle: {
-    fontSize: 12,
   },
 });
 

@@ -9,10 +9,10 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import {Icons, Images} from '../../assets';
+import {Images} from '../../assets';
 import icons from '../../assets/icons';
 import {CustomHeader} from '../../components';
-import {NavigationRoutes} from '../../constants';
+import {NavigationRoutes, Strings} from '../../constants';
 import styles from './styles/ContactStyle';
 
 const ContactScreen = () => {
@@ -27,7 +27,6 @@ const ContactScreen = () => {
         if (error) {
           setError(error);
         } else {
-          console.log('---contactList-', JSON.parse(contactList));
           setContactList(JSON.parse(contactList));
         }
       });
@@ -35,18 +34,21 @@ const ContactScreen = () => {
     getContacts();
   }, [ContactModule]);
 
-  const navigateToScreen = name => {
-    const {navigate} = this.props.navigation;
-    navigate(name);
-  };
-
-  const renderRow = item => {
+  const renderRow = (item, index) => {
+    const user = {
+      _id: index + 10,
+      name: item,
+      avatar: 'https://placeimg.com/140/140/any',
+      lastMessage: '',
+    };
     return (
       <TouchableOpacity
         style={styles.rowContainer}
-        onPress={() => navigateToScreen(NavigationRoutes.ChatScreen)}>
+        onPress={() =>
+          navigation.navigate(NavigationRoutes.ChatScreen, {user: user})
+        }>
         <Image source={Images.avatar} style={styles.profilePic} />
-        <Text style={styles.nameStyle}>{item}</Text>
+        <Text style={styles.textStyle}>{item}</Text>
       </TouchableOpacity>
     );
   };
@@ -55,7 +57,7 @@ const ContactScreen = () => {
     <Container>
       <CustomHeader
         left
-        title={'Select Contact'}
+        title={Strings.selectContact}
         leftIcon={icons.back}
         leftOnPress={() => navigation.goBack()}
       />
@@ -63,13 +65,13 @@ const ContactScreen = () => {
         {errors || contactsList.length === 0 ? (
           <View style={styles.whiteContainerCenter}>
             <Text style={styles.textStyle}>
-              {errors ? errors : 'Please add contacts'}
+              {errors ? errors : Strings.errorContact}
             </Text>
           </View>
         ) : (
           <FlatList
             data={contactsList}
-            renderItem={({item}) => renderRow(item)}
+            renderItem={({item, index}) => renderRow(item, index)}
             extraData={contactsList}
           />
         )}

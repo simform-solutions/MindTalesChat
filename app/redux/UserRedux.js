@@ -3,24 +3,22 @@ import Immutable from 'seamless-immutable';
 
 /* ------------- Types and Action Creators ------------- */
 const {Types, Creators} = createActions({
-  chatRequest: ['payload'],
-  chatSuccess: ['data'],
-  chatFailure: ['error'],
+  userRequest: ['payload'],
+  userSuccess: ['data'],
+  userFailure: ['error'],
 });
 
-export const ChatTypes = Types;
+export const UserTypes = Types;
 export default Creators;
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
-  chat: null,
-  fetching: null,
-  error: null,
+  user: null,
 });
 
 /* ------------- Selectors ------------- */
-export const ChatSelectors = {
-  chatList: state => state.chat,
+export const UserSelectors = {
+  userData: state => state.user.user,
 };
 
 /* ------------- Reducers ------------- */
@@ -31,9 +29,7 @@ export const request = state => state.merge({fetching: true});
 export const success = (state, action) => {
   const {data} = action;
   return state.merge({
-    fetching: false,
-    error: false,
-    chat: data,
+    user: data,
   });
 };
 
@@ -45,8 +41,8 @@ export const failure = (state, action) => {
 
 /* ------------- Hookup Reducers To Types ------------- */
 
-export const chatReducer = createReducer(INITIAL_STATE, {
-  [Types.CHAT_REQUEST]: request,
-  [Types.CHAT_SUCCESS]: success,
-  [Types.CHAT_FAILURE]: failure,
+export const userReducer = createReducer(INITIAL_STATE, {
+  [Types.USER_REQUEST]: request,
+  [Types.USER_SUCCESS]: success,
+  [Types.USER_FAILURE]: failure,
 });

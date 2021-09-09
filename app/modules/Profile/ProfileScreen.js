@@ -1,6 +1,6 @@
-import React, {createRef} from 'react';
-import {Container, Content, Toast} from 'native-base';
-import {View, Keyboard} from 'react-native';
+import React, { createRef } from 'react';
+import { Container, Content, Toast } from 'native-base';
+import { View, Keyboard } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {
   CustomButton,
@@ -8,10 +8,11 @@ import {
   CustomTextInput,
   ProfileImage,
 } from '../../components';
-import {Strings} from '../../constants';
+import { Strings } from '../../constants';
 import Schema from '../../services/ValidationServices';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 import styles from './styles/ProfileScreenStyle';
+import { Icons } from '../../assets';
 class ProfileScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -95,12 +96,12 @@ class ProfileScreen extends React.Component {
       height: 400,
       cropping: true,
     }).then(image => {
-      this.setState({imageSource: image.path});
+      this.setState({ imageSource: image.path });
     });
   };
 
   userSignUp = () => {
-    const {imageSource} = this.state;
+    const { imageSource } = this.state;
     if (imageSource.length === 0) {
       Toast.show({
         text: Strings.noProfilePic,
@@ -116,8 +117,8 @@ class ProfileScreen extends React.Component {
   isFormFilled = values =>
     values.name.length || values.email.length || values.password.length;
 
-  renderSignupButton = ({values, isValid, handleSubmit}) => {
-    const {imageSource} = this.state;
+  renderSignupButton = ({ values, isValid, handleSubmit }) => {
+    const { imageSource } = this.state;
     const isFormFilled = this.isFormFilled(values);
     return (
       <View style={styles.buttonContainer}>
@@ -141,15 +142,15 @@ class ProfileScreen extends React.Component {
 
   renderRegisterForm = () => (
     <Formik
-      initialValues={{name: '', email: '', password: ''}}
+      initialValues={{ name: '', email: '', password: '' }}
       validationSchema={Schema.register}
       onSubmit={this.userSignUp}>
-      {({...params}) => this.renderFormInputs(params)}
+      {({ ...params }) => this.renderFormInputs(params)}
     </Formik>
   );
 
   renderForm = () => {
-    const {imageSource} = this.state;
+    const { imageSource } = this.state;
     return (
       <View style={styles.formContainer}>
         <ProfileImage
@@ -164,7 +165,12 @@ class ProfileScreen extends React.Component {
   render() {
     return (
       <Container style={[styles.whiteContainerCenter]}>
-        <CustomHeader left title={'Profile'} />
+        <CustomHeader
+          left
+          title={Strings.profile}
+          leftIcon={Icons.back}
+          leftOnPress={() => this.props.navigation.goBack()}
+        />
         <Content
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.contentContainerStyle}>
