@@ -3,7 +3,7 @@ import { CustomHeader, ProfileImage } from '../../components';
 import styles from './styles/ViewProfileScreenStyle';
 import React from 'react';
 import { Icons, Images } from '../../assets';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/native';
 import { NavigationRoutes, Strings } from '../../constants';
 import { View, Text, Image } from 'react-native';
 

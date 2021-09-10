@@ -14,7 +14,6 @@ import ProfileScreen from '../modules/Profile/ProfileScreen';
 import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
 
 import ChatScreen from '../modules/Chat/ChatScreen';
-import ContactScreen from '../modules/Contact/ContactScreen';
 // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const RootStack = createStackNavigator();
@@ -76,11 +75,6 @@ const ChatStack = () => {
         options={{headerShown: false}}
         component={ChatScreen}
       />
-      <RootStack.Screen
-        name={NavigationRoutes.ContactScreen}
-        options={{headerShown: false}}
-        component={ContactScreen}
-      />
     </RootStack.Navigator>
   );
 };
@@ -91,7 +85,6 @@ const getTabBarVisibility = route => {
 
   if (
     routeName === NavigationRoutes.ChatScreen ||
-    routeName === NavigationRoutes.ContactScreen ||
     routeName === NavigationRoutes.ProfileScreen
   ) {
     return false;
