@@ -1,33 +1,31 @@
-import { Container, Content } from 'native-base';
-import { CustomHeader, ProfileImage } from '../../components';
-import styles from './styles/ViewProfileScreenStyle';
+import {useNavigation} from '@react-navigation/core';
+import {Container, Content} from 'native-base';
 import React from 'react';
-import { Icons, Images } from '../../assets';
-import { useNavigation } from '@react-navigation/core';
-import { NavigationRoutes, Strings } from '../../constants';
-import { View, Text, Image } from 'react-native';
+import {Image, Text, View} from 'react-native';
+import {useSelector} from 'react-redux';
+import {Icons, Images} from '../../assets';
+import {CustomButton, CustomHeader} from '../../components';
+import {NavigationRoutes, Strings} from '../../constants';
+import {UserSelectors} from '../../redux/UserRedux';
+import styles from './styles/ViewProfileScreenStyle';
 
 const ViewProfileScreen = () => {
+  const userProfileData = useSelector(UserSelectors.userProfileData);
   const navigation = useNavigation();
 
   const renderView = (lable, value) => (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-      }}>
+    <View style={styles.mainView}>
       <Text style={styles.lableStyle}>{lable}</Text>
       <Text style={styles.textStyle}>{value}</Text>
     </View>
-  )
+  );
 
-
-  const profileBottomView = () => (
+  const profileBottomView = userProfileData => (
     <View style={styles.footer}>
-      {renderView('Name', 'Michale')}
-      {renderView('Email', 'Michale@outlook.com')}
-      {renderView('Gender', 'Female')}
-      {renderView('Phone Number', '+1 (854)214 5454')}
+      {renderView('Name', userProfileData?.name)}
+      {renderView('Email', userProfileData?.email)}
+      {renderView('Gender', userProfileData?.gender)}
+      {renderView('Phone Number', userProfileData?.gender)}
     </View>
   );
 
@@ -37,7 +35,7 @@ const ViewProfileScreen = () => {
         style={styles.profilePic}
         source={Images.avatar}
 
-      // source={imageSource ? { uri: imageSource } : Images.avatar}
+        // source={imageSource ? { uri: imageSource } : Images.avatar}
       />
     </View>
   );
@@ -54,11 +52,16 @@ const ViewProfileScreen = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.contentContainerStyle}>
         {renderProfileImage()}
-        {profileBottomView()}
+        {profileBottomView(userProfileData)}
       </Content>
+      <View style={styles.buttonContainer}>
+        <CustomButton
+          title={Strings.logout}
+          // onPress={handleSubmit}
+        />
+      </View>
     </Container>
   );
 };
 
 export default ViewProfileScreen;
-

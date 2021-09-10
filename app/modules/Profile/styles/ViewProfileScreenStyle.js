@@ -1,9 +1,10 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   ApplicationStyles,
   Fonts,
   Colors,
   moderateScale,
+  verticalScale,
   scale,
 } from '../../../theme';
 
@@ -55,6 +56,14 @@ const styles = StyleSheet.create({
     //position: 'absolute', //Here is the trick
     // bottom: 0, //Here is the trick
     padding: scale(20),
+  },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mainView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 

@@ -16,9 +16,9 @@ const schema = {
     email: Yup.string()
       .email(Strings.invalidEmail)
       .required(Strings.emptyEmail),
-    password: Yup.string()
-      .matches(PASSWORD_REGEX, Strings.invalidPassword)
-      .required(Strings.emptyPassword),
+    // password: Yup.string()
+    //   .matches(PASSWORD_REGEX, Strings.invalidPassword)
+    //   .required(Strings.emptyPassword),
   }),
 };
 

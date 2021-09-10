@@ -15,7 +15,7 @@ import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
 
 import ChatScreen from '../modules/Chat/ChatScreen';
 import ContactScreen from '../modules/Contact/ContactScreen';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const RootStack = createStackNavigator();
 const DashBoardStack = createBottomTabNavigator();
@@ -129,9 +129,9 @@ const HomeStack = () => {
         name={'Chat'}
         options={({route}) => ({
           tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="chat" color={color} size={size} />
-          ),
+          // tabBarIcon: ({color, size}) => (
+          //   <MaterialCommunityIcons name="chat" color={color} size={size} />
+          // ),
         })}
         component={ChatStack}
       />
@@ -139,13 +139,13 @@ const HomeStack = () => {
         name={'Profile'}
         options={({route}) => ({
           tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons
-              name="account-circle"
-              color={color}
-              size={size}
-            />
-          ),
+          // tabBarIcon: ({color, size}) => (
+          //   <MaterialCommunityIcons
+          //     name="account-circle"
+          //     color={color}
+          //     size={size}
+          //   />
+          // ),
         })}
         component={ProfileStack}
       />
