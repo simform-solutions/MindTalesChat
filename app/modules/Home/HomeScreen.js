@@ -25,7 +25,7 @@ const HomeScreen = () => {
     const floatAction = [
       {
         text: Strings.newChat,
-        icon: Icons.newchat,
+        icon: Icons.newChat,
         name: Strings.newChat,
         color: colors.primary,
         position: 0,

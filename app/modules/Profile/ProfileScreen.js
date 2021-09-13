@@ -1,30 +1,36 @@
-import React, { createRef } from 'react';
-import { Container, Content, Toast } from 'native-base';
-import { View, Keyboard } from 'react-native';
+import {Formik} from 'formik';
+import {Container, Content} from 'native-base';
+import React, {createRef} from 'react';
+import {Keyboard, Toast, View} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import {connect} from 'react-redux';
+import {Icons} from '../../assets';
 import {
   CustomButton,
   CustomHeader,
   CustomTextInput,
   ProfileImage,
 } from '../../components';
-import { Strings } from '../../constants';
+import {Strings} from '../../constants';
+import UserActions from '../../redux/UserRedux';
 import Schema from '../../services/ValidationServices';
-import { Formik } from 'formik';
 import styles from './styles/ProfileScreenStyle';
-import { Icons } from '../../assets';
+
 class ProfileScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       imageSource: '',
+      profileData: props.profileData,
+      saveProfileData: props.submitProfileData,
     };
   }
 
   inputRef = {
     name: createRef(),
     email: createRef(),
-    password: createRef(),
+    gender: createRef(),
+    phoneNo: createRef(),
   };
 
   renderNameTextInput = ({
@@ -40,6 +46,8 @@ class ProfileScreen extends React.Component {
       style={styles.textInput}
       placeholder={Strings.namePlaceholder}
       value={values.name}
+      keyboardType={'default'}
+      returnKeyType={'next'}
       error={touched.name && errors.name}
       onBlur={handleBlur('name')}
       onChangeText={handleChange('name')}
@@ -61,14 +69,36 @@ class ProfileScreen extends React.Component {
       style={styles.textInput}
       placeholder={Strings.emailPlaceholder}
       value={values.email}
+      returnKeyType={'next'}
       error={touched.email && errors.email}
       onChangeText={handleChange('email')}
       onBlur={handleBlur('email')}
-      onSubmitEditing={() => this.inputRef.password.current.focus()}
+      onSubmitEditing={() => this.inputRef.gender.current.focus()}
     />
   );
 
-  renderPasswordTextInput = ({
+  renderGenderTextInput = ({
+    handleChange,
+    handleBlur,
+    errors,
+    touched,
+    values,
+  }) => (
+    <CustomTextInput
+      ref={this.inputRef.gender}
+      style={styles.textInput}
+      placeholder={Strings.genderPlaceholder}
+      value={values.gender}
+      error={touched.gender && errors.gender}
+      returnKeyType={'next'}
+      keyboardType={'default'}
+      onBlur={handleBlur('gender')}
+      onChangeText={handleChange('gender')}
+      onSubmitEditing={() => this.inputRef.phoneNo.current.focus()}
+    />
+  );
+
+  renderPhoneNoTextInput = ({
     handleChange,
     handleBlur,
     errors,
@@ -77,16 +107,16 @@ class ProfileScreen extends React.Component {
     handleSubmit,
   }) => (
     <CustomTextInput
-      secureTextEntry
-      ref={this.inputRef.password}
+      ref={this.inputRef.phoneNo}
       style={styles.textInput}
-      placeholder={Strings.passwordPlaceholder}
-      value={values.password}
-      error={touched.password && errors.password}
+      placeholder={Strings.phoneNoPlaceholder}
+      value={values.phoneNo}
+      error={touched.phoneNo && errors.phoneNo}
       returnKeyType={'done'}
+      keyboardType={'number-pad'}
+      onBlur={handleBlur('phoneNo')}
+      onChangeText={handleChange('phoneNo')}
       onSubmitEditing={handleSubmit}
-      onBlur={handleBlur('password')}
-      onChangeText={handleChange('password')}
     />
   );
 
@@ -96,13 +126,14 @@ class ProfileScreen extends React.Component {
       height: 400,
       cropping: true,
     }).then(image => {
-      this.setState({ imageSource: image.path });
+      this.setState({imageSource: image.path});
     });
   };
 
-  userSignUp = () => {
-    const { imageSource } = this.state;
-    if (imageSource.length === 0) {
+  userSubmit = values => {
+    const {imageSource} = this.state;
+    const {name, email, gender, phoneNo} = values;
+    if (imageSource?.length === 0) {
       Toast.show({
         text: Strings.noProfilePic,
         buttonText: Strings.ok,
@@ -112,13 +143,17 @@ class ProfileScreen extends React.Component {
       return;
     }
     Keyboard.dismiss();
+    this.state.saveProfileData(name, email, gender, phoneNo);
+    this.props.navigation.goBack();
   };
 
   isFormFilled = values =>
-    values.name.length || values.email.length || values.password.length;
-
-  renderSignupButton = ({ values, isValid, handleSubmit }) => {
-    const { imageSource } = this.state;
+    values.name.length ||
+    values.email.length ||
+    values.gender.length ||
+    values.phoneNo.length;
+  renderSubmitButton = ({values, isValid, handleSubmit}) => {
+    const {imageSource} = this.state;
     const isFormFilled = this.isFormFilled(values);
     return (
       <View style={styles.buttonContainer}>
@@ -135,22 +170,32 @@ class ProfileScreen extends React.Component {
     <View style={styles.formInputs}>
       {this.renderNameTextInput(params)}
       {this.renderEmailTextInput(params)}
-      {this.renderPasswordTextInput(params)}
-      {this.renderSignupButton(params)}
+      {this.renderGenderTextInput(params)}
+      {this.renderPhoneNoTextInput(params)}
+      {this.renderSubmitButton(params)}
     </View>
   );
 
-  renderRegisterForm = () => (
-    <Formik
-      initialValues={{ name: '', email: '', password: '' }}
-      validationSchema={Schema.register}
-      onSubmit={this.userSignUp}>
-      {({ ...params }) => this.renderFormInputs(params)}
-    </Formik>
-  );
+  renderRegisterForm = () => {
+    return (
+      <Formik
+        initialValues={{
+          name: this.state.profileData.name,
+          email: this.state.profileData.email,
+          gender: this.state.profileData.gender,
+          phoneNo: this.state.profileData.phoneNo,
+        }}
+        validationSchema={Schema.register}
+        onSubmit={values => {
+          this.userSubmit(values);
+        }}>
+        {({...params}) => this.renderFormInputs(params)}
+      </Formik>
+    );
+  };
 
   renderForm = () => {
-    const { imageSource } = this.state;
+    const {imageSource} = this.state;
     return (
       <View style={styles.formContainer}>
         <ProfileImage
@@ -181,4 +226,16 @@ class ProfileScreen extends React.Component {
   }
 }
 
-export default ProfileScreen;
+const mapStateToProps = state => ({
+  profileData: state.user.userProfileData,
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    submitProfileData: (name, email, gender, phoneNo) => {
+      dispatch(UserActions.userProfileDataSave(name, email, gender, phoneNo));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);

@@ -5,7 +5,9 @@ import {Keyboard, Text, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {CustomButton, CustomTextInput} from '../../../components';
 import {Strings} from '../../../constants';
+import {clearStack} from '../../../navigation/services/navigationServices';
 import AuthActions from '../../../redux/AuthRedux';
+import {storeData} from '../../../services/AsyncStorageService';
 import Schema from '../../../services/ValidationServices';
 import styles from '../styles/LoginScreenStyles';
 
@@ -116,11 +118,15 @@ const useLoginScreenMiddleView = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const onSubmitForm = useCallback(() => {
-    Keyboard.dismiss();
-    dispatch(AuthActions.authRequest());
-    navigation.navigate('HomeStack');
-  }, [dispatch, navigation]);
+  const onSubmitForm = useCallback(
+    values => {
+      Keyboard.dismiss();
+      dispatch(AuthActions.authRequest());
+      storeData('userLoginData', values);
+      clearStack(navigation, 'HomeStack');
+    },
+    [dispatch, navigation],
+  );
 
   return {onSubmitForm};
 };
@@ -131,7 +137,9 @@ const LoginScreenMiddleView = () => {
     <Formik
       initialValues={{email: '', password: ''}}
       validationSchema={Schema.login}
-      onSubmit={onSubmitForm}>
+      onSubmit={values => {
+        onSubmitForm(values);
+      }}>
       {({...params}) => renderLoginFormInputs(params)}
     </Formik>
   );

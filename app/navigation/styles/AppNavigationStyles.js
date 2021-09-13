@@ -53,4 +53,9 @@ export default StyleSheet.create({
     letterSpacing: 0,
     color: Colors.primary,
   },
+  tabIcon: {
+    width: 20,
+    height: 20,
+    alignSelf: 'center',
+  },
 });

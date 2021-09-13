@@ -10,6 +10,7 @@ const colors = {
   secondary: '#d8b4fe',
   neutral: '#3D3D3D',
   rosyBrown: '#e9d5ff',
+  tabBarShadow: '#000000',
 };
 
 export default colors;

@@ -1,4 +1,5 @@
 import {createRef} from 'react';
+import {CommonActions} from '@react-navigation/native';
 
 export const navigationRef = createRef();
 export const currentScreen = createRef();
@@ -16,5 +17,13 @@ export function replace(...props) {
 }
 
 export function goBack() {
-  navigationRef.current?.canGoBack() && navigationRef.current?.goBack();
+  navigationRef.current.goBack();
+}
+
+export function clearStack(navigation, screenName) {
+  const resetAction = CommonActions.reset({
+    index: 0,
+    routes: [{name: screenName}],
+  });
+  navigation.dispatch(resetAction);
 }
