@@ -21,6 +21,8 @@
 	  <key>NSContactsUsageDescription</key>
 
   <string>Read Contacts</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
