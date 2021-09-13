@@ -6,7 +6,6 @@ import {Image} from 'react-native';
 import {NavigationRoutes} from '../constants';
 import LoginScreen from '../modules/Auth/LoginScreen';
 import ChatScreen from '../modules/Chat/ChatScreen';
-import ContactScreen from '../modules/Contact/ContactScreen';
 import HomeScreen from '../modules/Home/HomeScreen';
 import ProfileScreen from '../modules/Profile/ProfileScreen';
 import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
