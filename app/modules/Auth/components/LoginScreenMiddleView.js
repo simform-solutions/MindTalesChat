@@ -2,7 +2,6 @@ import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React, {createRef, useCallback} from 'react';
 import {Keyboard, Text, View} from 'react-native';
-import {useDispatch} from 'react-redux';
 import {CustomButton, CustomTextInput} from '../../../components';
 import {Strings} from '../../../constants';
 import {clearStack} from '../../../navigation/services/navigationServices';
@@ -10,29 +9,6 @@ import AuthActions from '../../../redux/AuthRedux';
 import {storeData} from '../../../services/AsyncStorageService';
 import Schema from '../../../services/ValidationServices';
 import styles from '../styles/LoginScreenStyles';
-
-type renderEmailTextInputTypes = {
-  handleChange: Function,
-  handleBlur: Function,
-  values: object,
-  errors: object,
-  touched: Function,
-};
-
-type renderPasswordTextInputTypes = {
-  handleChange: Function,
-  handleBlur: Function,
-  values: object,
-  errors: object,
-  touched: Function,
-  handleSubmit: Function,
-};
-
-type renderLoginButtonTypes = {
-  values: object,
-  isValid: Boolean,
-  handleSubmit: Function,
-};
 
 const inputRef = {
   email: createRef(),
@@ -45,7 +21,7 @@ const renderEmailTextInput = ({
   errors,
   touched,
   values,
-}: renderEmailTextInputTypes) => (
+}) => (
   <View>
     <CustomTextInput
       ref={inputRef.email}
@@ -69,7 +45,7 @@ const renderPasswordTextInput = ({
   touched,
   values,
   handleSubmit,
-}: renderPasswordTextInputTypes) => (
+}) => (
   <View>
     <CustomTextInput
       secureTextEntry
@@ -86,11 +62,7 @@ const renderPasswordTextInput = ({
   </View>
 );
 
-const renderLoginButton = ({
-  values,
-  isValid,
-  handleSubmit,
-}: renderLoginButtonTypes) => {
+const renderLoginButton = ({values, isValid, handleSubmit}) => {
   const isFormFilled = values.email.length || values.password.length;
   return (
     <View style={styles.buttonContainer}>
@@ -116,8 +88,8 @@ const renderLoginFormInputs = params => (
 
 const useLoginScreenMiddleView = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
 
+<<<<<<< HEAD
   const onSubmitForm = useCallback(
     values => {
       Keyboard.dismiss();
@@ -127,6 +99,12 @@ const useLoginScreenMiddleView = () => {
     },
     [dispatch, navigation],
   );
+=======
+  const onSubmitForm = useCallback(() => {
+    Keyboard.dismiss();
+    navigation.navigate('HomeStack');
+  }, [navigation]);
+>>>>>>> origin/feature/post_chat_messages
 
   return {onSubmitForm};
 };

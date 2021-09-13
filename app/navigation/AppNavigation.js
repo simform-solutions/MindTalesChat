@@ -74,11 +74,6 @@ const ChatStack = () => {
         options={{headerShown: false}}
         component={ChatScreen}
       />
-      <RootStack.Screen
-        name={NavigationRoutes.ContactScreen}
-        options={{headerShown: false}}
-        component={ContactScreen}
-      />
     </RootStack.Navigator>
   );
 };
@@ -89,7 +84,6 @@ const getTabBarVisibility = route => {
 
   if (
     routeName === NavigationRoutes.ChatScreen ||
-    routeName === NavigationRoutes.ContactScreen ||
     routeName === NavigationRoutes.ProfileScreen
   ) {
     return false;
