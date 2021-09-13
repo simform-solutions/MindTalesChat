@@ -3,10 +3,11 @@ import {Container, Content} from 'native-base';
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {useSelector} from 'react-redux';
-import {Icons, Images} from '../../assets';
+import {Icons} from '../../assets';
 import {CustomButton, CustomHeader} from '../../components';
 import {NavigationRoutes, Strings} from '../../constants';
 import {UserSelectors} from '../../redux/UserRedux';
+import {clearData} from '../../services/AsyncStorageService';
 import styles from './styles/ViewProfileScreenStyle';
 
 const ViewProfileScreen = () => {
@@ -25,7 +26,7 @@ const ViewProfileScreen = () => {
       {renderView('Name', userProfileData?.name)}
       {renderView('Email', userProfileData?.email)}
       {renderView('Gender', userProfileData?.gender)}
-      {renderView('Phone Number', userProfileData?.gender)}
+      {renderView('Phone Number', userProfileData?.phoneNo)}
     </View>
   );
 
@@ -33,12 +34,15 @@ const ViewProfileScreen = () => {
     <View style={styles.profilePicContainer}>
       <Image
         style={styles.profilePic}
-        source={Images.avatar}
-
-        // source={imageSource ? { uri: imageSource } : Images.avatar}
+        // source={imageSource ? {uri: imageSource} : Images.avatar}
       />
     </View>
   );
+
+  async function handleLogout() {
+    await clearData('userLoginData');
+    navigation.navigate(NavigationRoutes.AuthStack);
+  }
 
   return (
     <Container style={[styles.whiteContainer]}>
@@ -53,13 +57,12 @@ const ViewProfileScreen = () => {
         contentContainerStyle={styles.contentContainerStyle}>
         {renderProfileImage()}
         {profileBottomView(userProfileData)}
-      </Content>
-      <View style={styles.buttonContainer}>
         <CustomButton
+          style={styles.logout}
           title={Strings.logout}
-          // onPress={handleSubmit}
+          onPress={handleLogout}
         />
-      </View>
+      </Content>
     </Container>
   );
 };

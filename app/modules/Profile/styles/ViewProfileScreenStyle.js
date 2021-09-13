@@ -1,10 +1,9 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   ApplicationStyles,
-  Fonts,
   Colors,
+  Fonts,
   moderateScale,
-  verticalScale,
   scale,
 } from '../../../theme';
 
@@ -50,20 +49,19 @@ const styles = StyleSheet.create({
   footer: {
     width: '100%',
     borderRadius: scale(15),
-    // height: 150,
     backgroundColor: '#f3e8ff',
     justifyContent: 'center',
-    //position: 'absolute', //Here is the trick
-    // bottom: 0, //Here is the trick
     padding: scale(20),
-  },
-  buttonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   mainView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  logout: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: scale(30),
   },
 });
 

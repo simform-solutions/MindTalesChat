@@ -1,9 +1,6 @@
 import * as Yup from 'yup';
 import {Strings} from '../constants';
 
-const PASSWORD_REGEX =
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*./-]).{8,}$/;
-
 const schema = {
   login: Yup.object({
     email: Yup.string()
@@ -16,9 +13,8 @@ const schema = {
     email: Yup.string()
       .email(Strings.invalidEmail)
       .required(Strings.emptyEmail),
-    // password: Yup.string()
-    //   .matches(PASSWORD_REGEX, Strings.invalidPassword)
-    //   .required(Strings.emptyPassword),
+    gender: Yup.string().label('gender').required(),
+    phoneNo: Yup.string().label('Phone Number').required().min(10),
   }),
 };
 

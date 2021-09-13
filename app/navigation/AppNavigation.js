@@ -1,21 +1,19 @@
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {Image} from 'react-native';
 import {NavigationRoutes} from '../constants';
 import LoginScreen from '../modules/Auth/LoginScreen';
+import ChatScreen from '../modules/Chat/ChatScreen';
+import ContactScreen from '../modules/Contact/ContactScreen';
 import HomeScreen from '../modules/Home/HomeScreen';
+import ProfileScreen from '../modules/Profile/ProfileScreen';
+import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
 import SplashScreen from '../modules/Splash/SplashScreen';
 import {Colors, Icons} from '../theme';
 import {navigationRef} from './services/navigationServices';
 import styles from './styles/AppNavigationStyles';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
-import ProfileScreen from '../modules/Profile/ProfileScreen';
-import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
-
-import ChatScreen from '../modules/Chat/ChatScreen';
-import ContactScreen from '../modules/Contact/ContactScreen';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const RootStack = createStackNavigator();
 const DashBoardStack = createBottomTabNavigator();
@@ -129,9 +127,17 @@ const HomeStack = () => {
         name={'Chat'}
         options={({route}) => ({
           tabBarVisible: getTabBarVisibility(route),
-          // tabBarIcon: ({color, size}) => (
-          //   <MaterialCommunityIcons name="chat" color={color} size={size} />
-          // ),
+          tabBarIcon: ({focused}) => {
+            return (
+              <Image
+                style={[
+                  styles.tabIcon,
+                  {tintColor: focused ? Colors.primary : Colors.secondary},
+                ]}
+                source={Icons.newChat}
+              />
+            );
+          },
         })}
         component={ChatStack}
       />
@@ -139,13 +145,17 @@ const HomeStack = () => {
         name={'Profile'}
         options={({route}) => ({
           tabBarVisible: getTabBarVisibility(route),
-          // tabBarIcon: ({color, size}) => (
-          //   <MaterialCommunityIcons
-          //     name="account-circle"
-          //     color={color}
-          //     size={size}
-          //   />
-          // ),
+          tabBarIcon: ({focused}) => {
+            return (
+              <Image
+                style={[
+                  styles.tabIcon,
+                  {tintColor: focused ? Colors.primary : Colors.secondary},
+                ]}
+                source={Icons.profile}
+              />
+            );
+          },
         })}
         component={ProfileStack}
       />
