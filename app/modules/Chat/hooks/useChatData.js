@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { GiftedChat } from 'react-native-gifted-chat';
-import { useDispatch, useSelector } from 'react-redux';
-import ChatActions, { ChatSelectors } from '../../../redux/ChatRedux';
+import {useCallback, useEffect, useState} from 'react';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {GiftedChat} from 'react-native-gifted-chat';
+import {useDispatch, useSelector} from 'react-redux';
+import ChatActions, {ChatSelectors} from '../../../redux/ChatRedux';
 
 const useChatdata = () => {
   const navigation = useNavigation();
@@ -13,7 +13,7 @@ const useChatdata = () => {
 
   const [chatMessage, setMessages] = useState([]);
   const reverseData = chatList => {
-    const cloneChats = [...chatList];
+    const cloneChats = chatList ? [...chatList] : [];
     return cloneChats ? cloneChats.reverse() : [];
   };
   useEffect(() => {
@@ -22,7 +22,7 @@ const useChatdata = () => {
 
   useEffect(() => {
     dispatch(
-      ChatActions.chatRequest({ _id: chatUser?.bin_id }, response => {
+      ChatActions.chatRequest({_id: chatUser?.bin_id}, response => {
         setMessages(response ? reverseData(response) : []);
       }),
     );
@@ -33,14 +33,18 @@ const useChatdata = () => {
     const newMsg = messages?.[0];
     newMsg.senderId = '1';
     newMsg.createdAt = new Date();
-    newMsg._id = chatMessage?.length + 1;
     newMsg.user = {
       _id: 1,
       name: 'John',
-      avatar: 'https://i.pravatar.cc/150?img=8y',
+      avatar: 'https://i.pravatar.cc/150?img=4',
     };
-
-    const chatMessageData = [...chatMessage];
+    let oldMessages = [];
+    setMessages(previousMessages => {
+      oldMessages = previousMessages;
+      newMsg._id = oldMessages?.length + 1;
+      return GiftedChat.append(previousMessages, newMsg);
+    });
+    const chatMessageData = [...oldMessages];
 
     const data = reverseData(chatMessageData);
 
@@ -54,9 +58,6 @@ const useChatdata = () => {
         data: [...data],
       }),
     );
-    // setMessages(previousMessages =>
-    //   GiftedChat.append(previousMessages, newMsg),
-    // );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -45,7 +45,7 @@ const ChatScreen = () => {
         user={{
           _id: 1,
           name: 'John',
-          avatar: 'https://i.pravatar.cc/150?img=8y',
+          avatar: 'https://i.pravatar.cc/150?img=10',
         }}
         onSend={messages => onSend(messages)}
       />
