@@ -5,7 +5,6 @@ import {Keyboard, Text, View} from 'react-native';
 import {CustomButton, CustomTextInput} from '../../../components';
 import {Strings} from '../../../constants';
 import {clearStack} from '../../../navigation/services/navigationServices';
-import AuthActions from '../../../redux/AuthRedux';
 import {storeData} from '../../../services/AsyncStorageService';
 import Schema from '../../../services/ValidationServices';
 import styles from '../styles/LoginScreenStyles';
@@ -88,23 +87,14 @@ const renderLoginFormInputs = params => (
 
 const useLoginScreenMiddleView = () => {
   const navigation = useNavigation();
-
-<<<<<<< HEAD
   const onSubmitForm = useCallback(
     values => {
       Keyboard.dismiss();
-      dispatch(AuthActions.authRequest());
       storeData('userLoginData', values);
       clearStack(navigation, 'HomeStack');
     },
-    [dispatch, navigation],
+    [navigation],
   );
-=======
-  const onSubmitForm = useCallback(() => {
-    Keyboard.dismiss();
-    navigation.navigate('HomeStack');
-  }, [navigation]);
->>>>>>> origin/feature/post_chat_messages
 
   return {onSubmitForm};
 };
