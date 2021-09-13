@@ -1,17 +1,17 @@
-import {Formik} from 'formik';
-import {Container, Content} from 'native-base';
-import React, {createRef} from 'react';
-import {Keyboard, Toast, View} from 'react-native';
+import { Formik } from 'formik';
+import { Container, Content } from 'native-base';
+import React, { createRef } from 'react';
+import { Keyboard, Toast, View } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-import {connect} from 'react-redux';
-import {Icons} from '../../assets';
+import { connect } from 'react-redux';
+import { Icons } from '../../assets';
 import {
   CustomButton,
   CustomHeader,
   CustomTextInput,
   ProfileImage,
 } from '../../components';
-import {Strings} from '../../constants';
+import { Strings } from '../../constants';
 import UserActions from '../../redux/UserRedux';
 import Schema from '../../services/ValidationServices';
 import styles from './styles/ProfileScreenStyle';
@@ -20,9 +20,11 @@ class ProfileScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageSource: '',
-      profileData: props.profileData,
-      saveProfileData: props.submitProfileData,
+      imageSource: props?.profileData?.profileImage
+        ? props?.profileData?.profileImage
+        : '',
+      profileData: props?.profileData,
+      saveProfileData: props?.submitProfileData,
     };
   }
 
@@ -126,13 +128,13 @@ class ProfileScreen extends React.Component {
       height: 400,
       cropping: true,
     }).then(image => {
-      this.setState({imageSource: image.path});
+      this.setState({ imageSource: image.path });
     });
   };
 
   userSubmit = values => {
-    const {imageSource} = this.state;
-    const {name, email, gender, phoneNo} = values;
+    const { imageSource } = this.state;
+    const { name, email, gender, phoneNo } = values;
     if (imageSource?.length === 0) {
       Toast.show({
         text: Strings.noProfilePic,
@@ -143,17 +145,17 @@ class ProfileScreen extends React.Component {
       return;
     }
     Keyboard.dismiss();
-    this.state.saveProfileData(name, email, gender, phoneNo);
+    this.state.saveProfileData(name, email, gender, phoneNo, imageSource);
     this.props.navigation.goBack();
   };
 
   isFormFilled = values =>
-    values.name.length ||
-    values.email.length ||
-    values.gender.length ||
-    values.phoneNo.length;
-  renderSubmitButton = ({values, isValid, handleSubmit}) => {
-    const {imageSource} = this.state;
+    values?.name?.length ||
+    values?.email?.length ||
+    values?.gender?.length ||
+    values?.phoneNo?.length;
+  renderSubmitButton = ({ values, isValid, handleSubmit }) => {
+    const { imageSource } = this.state;
     const isFormFilled = this.isFormFilled(values);
     return (
       <View style={styles.buttonContainer}>
@@ -180,22 +182,22 @@ class ProfileScreen extends React.Component {
     return (
       <Formik
         initialValues={{
-          name: this.state.profileData.name,
-          email: this.state.profileData.email,
-          gender: this.state.profileData.gender,
-          phoneNo: this.state.profileData.phoneNo,
+          name: this.state?.profileData?.name,
+          email: this.state?.profileData?.email,
+          gender: this.state?.profileData?.gender,
+          phoneNo: this.state?.profileData?.phoneNo,
         }}
         validationSchema={Schema.register}
         onSubmit={values => {
           this.userSubmit(values);
         }}>
-        {({...params}) => this.renderFormInputs(params)}
+        {({ ...params }) => this.renderFormInputs(params)}
       </Formik>
     );
   };
 
   renderForm = () => {
-    const {imageSource} = this.state;
+    const { imageSource } = this.state;
     return (
       <View style={styles.formContainer}>
         <ProfileImage
@@ -232,8 +234,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    submitProfileData: (name, email, gender, phoneNo) => {
-      dispatch(UserActions.userProfileDataSave(name, email, gender, phoneNo));
+    submitProfileData: (name, email, gender, phoneNo, profileImage) => {
+      dispatch(UserActions.userProfileDataSave(name, email, gender, phoneNo, profileImage));
     },
   };
 };

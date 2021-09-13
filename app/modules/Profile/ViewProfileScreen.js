@@ -1,19 +1,18 @@
-import {useNavigation} from '@react-navigation/core';
-import {Container, Content} from 'native-base';
+import { useNavigation } from '@react-navigation/core';
+import { Container, Content } from 'native-base';
 import React from 'react';
-import {Image, Text, View} from 'react-native';
-import {useSelector} from 'react-redux';
-import {Icons} from '../../assets';
-import {CustomButton, CustomHeader} from '../../components';
-import {NavigationRoutes, Strings} from '../../constants';
-import {UserSelectors} from '../../redux/UserRedux';
-import {clearData} from '../../services/AsyncStorageService';
+import { Image, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Icons, Images } from '../../assets';
+import { CustomButton, CustomHeader } from '../../components';
+import { NavigationRoutes, Strings } from '../../constants';
+import { UserSelectors } from '../../redux/UserRedux';
+import { clearData } from '../../services/AsyncStorageService';
 import styles from './styles/ViewProfileScreenStyle';
 
 const ViewProfileScreen = () => {
   const userProfileData = useSelector(UserSelectors.userProfileData);
   const navigation = useNavigation();
-
   const renderView = (lable, value) => (
     <View style={styles.mainView}>
       <Text style={styles.lableStyle}>{lable}</Text>
@@ -34,7 +33,11 @@ const ViewProfileScreen = () => {
     <View style={styles.profilePicContainer}>
       <Image
         style={styles.profilePic}
-        // source={imageSource ? {uri: imageSource} : Images.avatar}
+        source={
+          userProfileData?.profileImage
+            ? { uri: userProfileData?.profileImage }
+            : Images.avatar
+        }
       />
     </View>
   );
@@ -49,7 +52,7 @@ const ViewProfileScreen = () => {
       <CustomHeader
         right
         title={Strings.viewProfile}
-        rightIcon={Icons.edit}
+        rightIcon={Icons.editProfile}
         rightOnPress={() => navigation.navigate(NavigationRoutes.ProfileScreen)}
       />
       <Content
