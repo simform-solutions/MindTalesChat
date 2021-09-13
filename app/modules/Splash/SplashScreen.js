@@ -9,19 +9,20 @@ import styles from './styles/SplashScreenStyles';
 const SplashScreen = () => {
   const navigation = useNavigation();
   useEffect(() => {
+    async function checkLogin() {
+      retrieveData('userLoginData', loginData => {
+        if (loginData) {
+          clearStack(navigation, NavigationRoutes.HomeStack);
+        } else {
+          clearStack(navigation, NavigationRoutes.AuthStack);
+        }
+      });
+    }
     setTimeout(() => {
       checkLogin();
     }, 2000);
-  }, []);
-  function checkLogin() {
-    retrieveData('userLoginData', loginData => {
-      if (loginData) {
-        clearStack(navigation, NavigationRoutes.HomeStack);
-      } else {
-        clearStack(navigation, NavigationRoutes.AuthStack);
-      }
-    });
-  }
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />

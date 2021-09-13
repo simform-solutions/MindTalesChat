@@ -6,6 +6,7 @@ const icons = {
   applogo: require('./mindtales.jpeg'),
   newChat: require('./newChat.png'),
   profile: require('./profile.png'),
+  editProfile: require('./edit_white.png'),
 };
 
 export default icons;

@@ -6,7 +6,6 @@ import {Image} from 'react-native';
 import {NavigationRoutes} from '../constants';
 import LoginScreen from '../modules/Auth/LoginScreen';
 import ChatScreen from '../modules/Chat/ChatScreen';
-import ContactScreen from '../modules/Contact/ContactScreen';
 import HomeScreen from '../modules/Home/HomeScreen';
 import ProfileScreen from '../modules/Profile/ProfileScreen';
 import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
@@ -74,11 +73,6 @@ const ChatStack = () => {
         options={{headerShown: false}}
         component={ChatScreen}
       />
-      <RootStack.Screen
-        name={NavigationRoutes.ContactScreen}
-        options={{headerShown: false}}
-        component={ContactScreen}
-      />
     </RootStack.Navigator>
   );
 };
@@ -89,7 +83,6 @@ const getTabBarVisibility = route => {
 
   if (
     routeName === NavigationRoutes.ChatScreen ||
-    routeName === NavigationRoutes.ContactScreen ||
     routeName === NavigationRoutes.ProfileScreen
   ) {
     return false;

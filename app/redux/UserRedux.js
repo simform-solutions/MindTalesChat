@@ -7,7 +7,7 @@ const {Types, Creators} = createActions({
   userSuccess: ['data'],
   userFailure: ['error'],
   userProfileRequest: [''],
-  userProfileDataSave: ['name', 'email', 'gender', 'phoneNo'],
+  userProfileDataSave: ['name', 'email', 'gender', 'phoneNo', 'profileImage'],
   userProfileFailure: ['error'],
 });
 
@@ -23,6 +23,7 @@ export const INITIAL_STATE = Immutable({
     email: 'test@gmail.com',
     gender: 'female',
     phoneNo: '9414123456',
+    profileImage: '',
   },
   fetchingUserProfile: false,
   errorInProfile: '',
@@ -55,7 +56,7 @@ export const success = (state, action) => {
 };
 
 export const userProfileDataSave = (state, action) => {
-  const {name, email, gender, phoneNo} = action;
+  const {name, email, gender, phoneNo, profileImage} = action;
   const updateProfileData = Object.assign(
     {...state?.userProfileData},
     {
@@ -63,6 +64,7 @@ export const userProfileDataSave = (state, action) => {
       email: email,
       gender: gender,
       phoneNo: phoneNo,
+      profileImage: profileImage,
     },
   );
   return state.merge({
