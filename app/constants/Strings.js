@@ -25,7 +25,6 @@ const strings = {
   newChat: 'New Chat',
   viewProfile: 'View Profile',
   profile: 'Profile',
-
 };
 
 export default strings;

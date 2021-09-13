@@ -1,4 +1,4 @@
-import { chatApiConfig} from './Utils';
+import {chatApiConfig} from './Utils';
 
 const chatApi = chatApiConfig('https://api.jsonbin.io/v3/b/');
 

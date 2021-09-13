@@ -42,7 +42,11 @@ const ChatScreen = () => {
         scrollToBottom
         renderBubble={renderBubble}
         renderSend={renderSend}
-        user={chatUser}
+        user={{
+          _id: 1,
+          name: 'John',
+          avatar: 'https://i.pravatar.cc/150?img=8y',
+        }}
         onSend={messages => onSend(messages)}
       />
     );

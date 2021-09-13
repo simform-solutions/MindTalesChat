@@ -1,11 +1,11 @@
-import { Container, Content } from 'native-base';
-import { CustomHeader, ProfileImage } from '../../components';
+import {Container, Content} from 'native-base';
+import {CustomHeader, ProfileImage} from '../../components';
 import styles from './styles/ViewProfileScreenStyle';
 import React from 'react';
-import { Icons, Images } from '../../assets';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationRoutes, Strings } from '../../constants';
-import { View, Text, Image } from 'react-native';
+import {Icons, Images} from '../../assets';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationRoutes, Strings} from '../../constants';
+import {View, Text, Image} from 'react-native';
 
 const ViewProfileScreen = () => {
   const navigation = useNavigation();
@@ -19,8 +19,7 @@ const ViewProfileScreen = () => {
       <Text style={styles.lableStyle}>{lable}</Text>
       <Text style={styles.textStyle}>{value}</Text>
     </View>
-  )
-
+  );
 
   const profileBottomView = () => (
     <View style={styles.footer}>
@@ -37,7 +36,7 @@ const ViewProfileScreen = () => {
         style={styles.profilePic}
         source={Images.avatar}
 
-      // source={imageSource ? { uri: imageSource } : Images.avatar}
+        // source={imageSource ? { uri: imageSource } : Images.avatar}
       />
     </View>
   );
@@ -61,4 +60,3 @@ const ViewProfileScreen = () => {
 };
 
 export default ViewProfileScreen;
-
