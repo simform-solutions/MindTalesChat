@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { StatusBar, Text, View } from 'react-native';
 import { NavigationRoutes } from '../../constants';
-import { clearStack } from '../../navigation/services/navigationServices';
 import { retrieveData } from '../../services/AsyncStorageService';
 import styles from './styles/SplashScreenStyles';
 
@@ -12,9 +11,15 @@ const SplashScreen = () => {
     async function checkLogin() {
       retrieveData('userLoginData', loginData => {
         if (loginData) {
-          clearStack(navigation, NavigationRoutes.HomeStack);
+          navigation.reset({
+            index: 0,
+            routes: [{ name: NavigationRoutes.HomeStack }],
+          });
         } else {
-          clearStack(navigation, NavigationRoutes.AuthStack);
+          navigation.reset({
+            index: 0,
+            routes: [{ name: NavigationRoutes.AuthStack }],
+          });
         }
       });
     }

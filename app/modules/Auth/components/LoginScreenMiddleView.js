@@ -3,8 +3,7 @@ import { Formik } from 'formik';
 import React, { createRef, useCallback } from 'react';
 import { Keyboard, Text, View } from 'react-native';
 import { CustomButton, CustomTextInput } from '../../../components';
-import { Strings } from '../../../constants';
-import { clearStack } from '../../../navigation/services/navigationServices';
+import { NavigationRoutes, Strings } from '../../../constants';
 import { storeData } from '../../../services/AsyncStorageService';
 import Schema from '../../../services/ValidationServices';
 import styles from '../styles/LoginScreenStyles';
@@ -91,7 +90,10 @@ const useLoginScreenMiddleView = () => {
     values => {
       Keyboard.dismiss();
       storeData('userLoginData', values);
-      clearStack(navigation, 'HomeStack');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: NavigationRoutes.HomeStack }],
+      });
     },
     [navigation],
   );
