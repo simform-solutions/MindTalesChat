@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import {Strings} from '../constants';
+import { Strings } from '../constants';
 
 const schema = {
   login: Yup.object({

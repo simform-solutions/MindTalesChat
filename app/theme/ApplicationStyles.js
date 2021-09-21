@@ -1,6 +1,6 @@
 import colors from './Colors';
 import Colors from './Colors';
-import {Metrics, scale, verticalScale} from './Metrics';
+import { Metrics, scale, verticalScale } from './Metrics';
 
 // This file is for a reusable grouping of Theme items.
 // Similar to an XML fragment layout in Android

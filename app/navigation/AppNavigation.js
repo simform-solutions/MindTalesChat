@@ -1,17 +1,17 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import {Image} from 'react-native';
-import {NavigationRoutes} from '../constants';
+import { Image } from 'react-native';
+import { NavigationRoutes } from '../constants';
 import LoginScreen from '../modules/Auth/LoginScreen';
 import ChatScreen from '../modules/Chat/ChatScreen';
 import HomeScreen from '../modules/Home/HomeScreen';
 import ProfileScreen from '../modules/Profile/ProfileScreen';
 import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
 import SplashScreen from '../modules/Splash/SplashScreen';
-import {Colors, Icons} from '../theme';
-import {navigationRef} from './services/navigationServices';
+import { Colors, Icons } from '../theme';
+import { navigationRef } from './services/navigationServices';
 import styles from './styles/AppNavigationStyles';
 
 const RootStack = createStackNavigator();
@@ -38,7 +38,7 @@ const AuthStack = () => {
     <RootStack.Navigator screenOptions={stackScreenOptions}>
       <RootStack.Screen
         name={NavigationRoutes.LoginScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={LoginScreen}
       />
     </RootStack.Navigator>
@@ -49,12 +49,12 @@ const ProfileStack = () => {
     <RootStack.Navigator screenOptions={stackScreenOptions}>
       <RootStack.Screen
         name={NavigationRoutes.ViewProfileScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={ViewProfileScreen}
       />
       <RootStack.Screen
         name={NavigationRoutes.ProfileScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={ProfileScreen}
       />
     </RootStack.Navigator>
@@ -65,12 +65,12 @@ const ChatStack = () => {
     <RootStack.Navigator screenOptions={stackScreenOptions}>
       <RootStack.Screen
         name={NavigationRoutes.HomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={HomeScreen}
       />
       <RootStack.Screen
         name={NavigationRoutes.ChatScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={ChatScreen}
       />
     </RootStack.Navigator>
@@ -109,23 +109,24 @@ const HomeStack = () => {
           padding: 0,
         },
         style: {
-          shadowOffset: {width: 0, height: 2},
+          shadowOffset: { width: 0, height: 2 },
           shadowColor: Colors.tabBarShadow,
           shadowOpacity: 0.2,
           shadowRadius: 7,
           elevation: 7,
         },
-      }}>
+      }}
+    >
       <DashBoardStack.Screen
         name={'Chat'}
-        options={({route}) => ({
+        options={({ route }) => ({
           tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({focused}) => {
+          tabBarIcon: ({ focused }) => {
             return (
               <Image
                 style={[
                   styles.tabIcon,
-                  {tintColor: focused ? Colors.primary : Colors.secondary},
+                  { tintColor: focused ? Colors.primary : Colors.secondary },
                 ]}
                 source={Icons.newChat}
               />
@@ -136,14 +137,14 @@ const HomeStack = () => {
       />
       <DashBoardStack.Screen
         name={'Profile'}
-        options={({route}) => ({
+        options={({ route }) => ({
           tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({focused}) => {
+          tabBarIcon: ({ focused }) => {
             return (
               <Image
                 style={[
                   styles.tabIcon,
-                  {tintColor: focused ? Colors.primary : Colors.secondary},
+                  { tintColor: focused ? Colors.primary : Colors.secondary },
                 ]}
                 source={Icons.profile}
               />
@@ -163,17 +164,17 @@ const AppNavigation = () => {
       <RootStack.Navigator screenOptions={stackScreenOptions}>
         <RootStack.Screen
           name={NavigationRoutes.SplashScreen}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
           component={SplashScreen}
         />
         <RootStack.Screen
           name={NavigationRoutes.AuthStack}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
           component={AuthStack}
         />
         <RootStack.Screen
           name={NavigationRoutes.HomeStack}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
           component={HomeStack}
         />
       </RootStack.Navigator>

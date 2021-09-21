@@ -1,7 +1,7 @@
-import {Container, Content} from 'native-base';
+import { Container, Content } from 'native-base';
 import React from 'react';
-import {CustomHeader} from '../../components';
-import {LoginScreenMiddleView, LoginScreenTopView} from './components';
+import { CustomHeader } from '../../components';
+import { LoginScreenMiddleView, LoginScreenTopView } from './components';
 import styles from './styles/LoginScreenStyles';
 
 const LoginScreen = () => {
@@ -12,7 +12,8 @@ const LoginScreen = () => {
         scrollEnabled={false}
         showsVerticalScrollIndicator={false}
         enableAutoAutomaticScroll={false}
-        contentContainerStyle={styles.contentContainerStyle}>
+        contentContainerStyle={styles.contentContainerStyle}
+      >
         <LoginScreenTopView />
         <LoginScreenMiddleView />
       </Content>

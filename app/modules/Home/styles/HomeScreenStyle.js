@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {ApplicationStyles, scale} from '../../../theme';
+import { StyleSheet } from 'react-native';
+import { ApplicationStyles, Colors, scale } from '../../../theme';
 
 const styles = StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -15,14 +15,14 @@ const styles = StyleSheet.create({
     marginVertical: scale(5),
     alignItems: 'center',
   },
-  itemContainer: {padding: scale(15)},
+  itemContainer: { padding: scale(15) },
   nameStyle: {
     fontSize: 15,
     fontWeight: '500',
   },
   msgStyle: {
     fontSize: scale(12),
-    color: 'gray',
+    color: Colors.gray,
     marginEnd: scale(20),
   },
 });

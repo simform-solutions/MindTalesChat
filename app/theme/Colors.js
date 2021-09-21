@@ -11,6 +11,8 @@ const colors = {
   neutral: '#3D3D3D',
   rosyBrown: '#e9d5ff',
   tabBarShadow: '#000000',
+  gray: '#808080',
+  purpule: '#f3e8ff',
 };
 
 export default colors;

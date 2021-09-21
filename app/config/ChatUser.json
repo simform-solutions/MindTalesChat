@@ -1,27 +1,27 @@
 {
-    "data": {
-        "user": [
-            {
-                "_id": 2,
-                "bin_id": "613a1aa79548541c29aed6c0",
-                "name": "Michael",
-                "avatar": "https://i.pravatar.cc/150?img=4y",
-                "username": "@michael"
-            },
-            {
-                "_id": 3,
-                "bin_id": "613a18aa9548541c29aed56f",
-                "name": "Mike",
-                "avatar": "https://i.pravatar.cc/150?img=7y",
-                "username": "@mike"
-            },
-            {
-                "_id": 4,
-                "bin_id": "6139db60aa02be1d4444f1c6",
-                "name": "Dave",
-                "avatar": "https://i.pravatar.cc/150?img=8y",
-                "username": "@dave"
-            }
-        ]
-    }
+  "data": {
+    "user": [
+      {
+        "_id": 2,
+        "bin_id": "613a1aa79548541c29aed6c0",
+        "name": "Michael",
+        "avatar": "https://i.pravatar.cc/150?img=4y",
+        "username": "@michael"
+      },
+      {
+        "_id": 3,
+        "bin_id": "613a18aa9548541c29aed56f",
+        "name": "Mike",
+        "avatar": "https://i.pravatar.cc/150?img=7y",
+        "username": "@mike"
+      },
+      {
+        "_id": 4,
+        "bin_id": "6139db60aa02be1d4444f1c6",
+        "name": "Dave",
+        "avatar": "https://i.pravatar.cc/150?img=8y",
+        "username": "@dave"
+      }
+    ]
+  }
 }

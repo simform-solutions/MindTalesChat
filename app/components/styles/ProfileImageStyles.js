@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {Colors, scale} from '../../theme';
+import { StyleSheet } from 'react-native';
+import { Colors, scale } from '../../theme';
 
 const styles = StyleSheet.create({
   profilePicContainer: {

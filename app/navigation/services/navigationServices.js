@@ -1,5 +1,5 @@
-import {createRef} from 'react';
-import {CommonActions} from '@react-navigation/native';
+import { createRef } from 'react';
+import { CommonActions } from '@react-navigation/native';
 
 export const navigationRef = createRef();
 export const currentScreen = createRef();
@@ -23,7 +23,7 @@ export function goBack() {
 export function clearStack(navigation, screenName) {
   const resetAction = CommonActions.reset({
     index: 0,
-    routes: [{name: screenName}],
+    routes: [{ name: screenName }],
   });
   navigation.dispatch(resetAction);
 }

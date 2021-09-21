@@ -1,15 +1,16 @@
-import {View} from 'native-base';
+import { View } from 'native-base';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {Image, Text, TouchableOpacity} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { Image, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles/CustomHeaderStyles';
 
 const leftSection = (leftIcon, leftIconStyle, leftOnPress) => (
   <TouchableOpacity
     activeOpacity={0.7}
     hitSlop={styles.hitSlop}
-    onPress={leftOnPress}>
+    onPress={leftOnPress}
+  >
     <Image source={leftIcon} style={[styles.iconStyle, leftIconStyle]} />
   </TouchableOpacity>
 );
@@ -18,7 +19,8 @@ const centerSection = (title, titleStyle) => (
   <Text
     numberOfLines={1}
     ellipsizeMode={'tail'}
-    style={[styles.title, titleStyle]}>
+    style={[styles.title, titleStyle]}
+  >
     {title}
   </Text>
 );
@@ -27,7 +29,8 @@ const rightSection = (rightIcon, rightIconStyle, rightOnPress) => (
   <TouchableOpacity
     activeOpacity={0.7}
     hitSlop={styles.hitSlop}
-    onPress={rightOnPress}>
+    onPress={rightOnPress}
+  >
     <Image source={rightIcon} style={[styles.iconStyle, rightIconStyle]} />
   </TouchableOpacity>
 );
@@ -48,7 +51,8 @@ const CustomHeader = ({
 }) => (
   <SafeAreaView
     style={[styles.headerContainer, headerStyle]}
-    edges={['right', 'top', 'left']}>
+    edges={['right', 'top', 'left']}
+  >
     <View style={styles.iconView}>
       {left && leftSection(leftIcon, leftIconStyle, leftOnPress)}
     </View>

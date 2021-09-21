@@ -1,4 +1,4 @@
-import {put} from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import UserActions from '../redux/UserRedux';
 import UserData from '../config/ChatUser.json';
 

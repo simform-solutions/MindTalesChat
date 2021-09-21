@@ -1,21 +1,21 @@
-import {Container} from 'native-base';
-import {Icons} from '../../assets';
-import {CustomHeader} from '../../components';
+import { Container } from 'native-base';
+import { Icons } from '../../assets';
+import { CustomHeader } from '../../components';
 import styles from './styles/ChatScreenStyle';
 import React from 'react';
-import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
+import { Bubble, GiftedChat, Send } from 'react-native-gifted-chat';
 import colors from '../../theme/Colors';
 import useChatdata from './hooks/useChatData';
 
 const ChatScreen = () => {
-  const {navigation, chatUser, onSend, chatMessage} = useChatdata();
+  const { navigation, chatUser, onSend, chatMessage } = useChatdata();
 
   const renderBubble = props => {
-    if (!props.currentMessage.sent) {
+    if (!props?.currentMessage?.sent) {
       return (
         <Bubble
           wrapperStyle={{
-            right: {backgroundColor: colors.primary},
+            right: { backgroundColor: colors.primary },
           }}
           {...props}
         />
@@ -38,8 +38,8 @@ const ChatScreen = () => {
   const ChatView = () => {
     return (
       <GiftedChat
-        messages={chatMessage}
         scrollToBottom
+        messages={chatMessage}
         renderBubble={renderBubble}
         renderSend={renderSend}
         user={{

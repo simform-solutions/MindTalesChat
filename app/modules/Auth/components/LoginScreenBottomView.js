@@ -1,7 +1,7 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {Text, View} from 'react-native';
-import {Strings} from '../../../constants';
+import { Text, View } from 'react-native';
+import { Strings } from '../../../constants';
 import styles from '../styles/LoginScreenStyles';
 
 const LoginScreenBottomView = () => {
@@ -12,7 +12,8 @@ const LoginScreenBottomView = () => {
         {Strings.member}
         <Text
           style={styles.signupText}
-          onPress={() => navigation.navigate('RegisterScreen')}>
+          onPress={() => navigation.navigate('RegisterScreen')}
+        >
           {Strings.signup}
         </Text>
       </Text>

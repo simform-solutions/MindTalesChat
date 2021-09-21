@@ -1,5 +1,10 @@
-import {StyleSheet} from 'react-native';
-import {ApplicationStyles, Colors, moderateScale, Fonts} from '../../../theme';
+import { StyleSheet } from 'react-native';
+import {
+  ApplicationStyles,
+  Colors,
+  moderateScale,
+  Fonts,
+} from '../../../theme';
 const styles = StyleSheet.create({
   container: {
     ...ApplicationStyles.screen.whiteContainer,

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import React, {forwardRef} from 'react';
-import {Image, Text, TextInput, View} from 'react-native';
-import {Icons, Colors} from '../theme';
+import React, { forwardRef } from 'react';
+import { Image, Text, TextInput, View } from 'react-native';
+import { Icons, Colors } from '../theme';
 import styles from './styles/CustomTextInputStyles';
 
 const ErrorView = message => (

@@ -1,9 +1,9 @@
-import {call, put} from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 import ChatActions from '../redux/ChatRedux';
-import {getError} from '../services/Utils';
+import { getError } from '../services/Utils';
 
 function* handleResponse(response, action) {
-  const {chatRequestSuccess} = action;
+  const { chatRequestSuccess } = action;
   if (response?.status === 200) {
     yield put(
       ChatActions.chatSuccess({

@@ -1,5 +1,5 @@
-import {Platform, StyleSheet} from 'react-native';
-import {Colors, scale, verticalScale, Fonts} from '../../theme';
+import { Platform, StyleSheet } from 'react-native';
+import { Colors, scale, verticalScale, Fonts } from '../../theme';
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     color: Colors.white,
     textAlign: 'center',
   },
-  hitSlop: {left: 20, right: 20, top: 20, bottom: 20},
+  hitSlop: { left: 20, right: 20, top: 20, bottom: 20 },
 });
 
 export default styles;

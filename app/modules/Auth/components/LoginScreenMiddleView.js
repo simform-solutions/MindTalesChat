@@ -1,11 +1,11 @@
-import {useNavigation} from '@react-navigation/native';
-import {Formik} from 'formik';
-import React, {createRef, useCallback} from 'react';
-import {Keyboard, Text, View} from 'react-native';
-import {CustomButton, CustomTextInput} from '../../../components';
-import {Strings} from '../../../constants';
-import {clearStack} from '../../../navigation/services/navigationServices';
-import {storeData} from '../../../services/AsyncStorageService';
+import { useNavigation } from '@react-navigation/native';
+import { Formik } from 'formik';
+import React, { createRef, useCallback } from 'react';
+import { Keyboard, Text, View } from 'react-native';
+import { CustomButton, CustomTextInput } from '../../../components';
+import { Strings } from '../../../constants';
+import { clearStack } from '../../../navigation/services/navigationServices';
+import { storeData } from '../../../services/AsyncStorageService';
 import Schema from '../../../services/ValidationServices';
 import styles from '../styles/LoginScreenStyles';
 
@@ -61,7 +61,7 @@ const renderPasswordTextInput = ({
   </View>
 );
 
-const renderLoginButton = ({values, isValid, handleSubmit}) => {
+const renderLoginButton = ({ values, isValid, handleSubmit }) => {
   const isFormFilled = values.email.length || values.password.length;
   return (
     <View style={styles.buttonContainer}>
@@ -96,19 +96,20 @@ const useLoginScreenMiddleView = () => {
     [navigation],
   );
 
-  return {onSubmitForm};
+  return { onSubmitForm };
 };
 
 const LoginScreenMiddleView = () => {
-  const {onSubmitForm} = useLoginScreenMiddleView();
+  const { onSubmitForm } = useLoginScreenMiddleView();
   return (
     <Formik
-      initialValues={{email: '', password: ''}}
+      initialValues={{ email: '', password: '' }}
       validationSchema={Schema.login}
       onSubmit={values => {
         onSubmitForm(values);
-      }}>
-      {({...params}) => renderLoginFormInputs(params)}
+      }}
+    >
+      {({ ...params }) => renderLoginFormInputs(params)}
     </Formik>
   );
 };

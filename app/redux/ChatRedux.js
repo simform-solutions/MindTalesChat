@@ -1,8 +1,8 @@
-import {createReducer, createActions} from 'reduxsauce';
+import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
 /* ------------- Types and Action Creators ------------- */
-const {Types, Creators} = createActions({
+const { Types, Creators } = createActions({
   chatRequest: ['payload', 'chatRequestSuccess'],
   chatUpdateRequest: ['payload'],
   chatSuccess: ['data'],
@@ -27,11 +27,11 @@ export const ChatSelectors = {
 
 /* ------------- Reducers ------------- */
 // request the data from an api
-export const request = state => state.merge({fetching: true});
+export const request = state => state.merge({ fetching: true });
 
 // successful api lookup
 export const success = (state, action) => {
-  const {data} = action;
+  const { data } = action;
   return state.merge({
     fetching: false,
     error: false,
@@ -41,12 +41,12 @@ export const success = (state, action) => {
 };
 
 // successful api lookup
-export const chatUpdateRequest = state => state.merge({sending: true});
+export const chatUpdateRequest = state => state.merge({ sending: true });
 
 // Something went wrong somewhere.
 export const failure = (state, action) => {
-  const {error} = action;
-  return state.merge({fetching: false, error, sending: false});
+  const { error } = action;
+  return state.merge({ fetching: false, error, sending: false });
 };
 
 /* ------------- Hookup Reducers To Types ------------- */

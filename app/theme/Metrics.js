@@ -1,6 +1,6 @@
-import {Dimensions, Platform} from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 //Guideline sizes are based on standard ~5" screen mobile device
 const guidelineBaseWidth = 375;
@@ -39,7 +39,7 @@ const Metrics = {
   },
   headerShadow: {
     shadowColor: 'grey',
-    shadowOffset: {width: 1, height: 2.5},
+    shadowOffset: { width: 1, height: 2.5 },
     shadowOpacity: 0.2,
     shadowRadius: 1,
     elevation: 2,
@@ -53,4 +53,4 @@ const Metrics = {
     xxxl: 30,
   },
 };
-export {scale, verticalScale, horizontalScale, moderateScale, Metrics};
+export { scale, verticalScale, horizontalScale, moderateScale, Metrics };
