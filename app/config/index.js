@@ -1,3 +1,3 @@
-import {PushConfig} from './PushConfig';
+import { PushConfig } from './PushConfig';
 
-export {PushConfig};
+export { PushConfig };

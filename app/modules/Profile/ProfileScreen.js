@@ -1,9 +1,9 @@
 import { Formik } from 'formik';
 import { Container, Content } from 'native-base';
-import React, { createRef } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import { Keyboard, Toast, View } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { Icons } from '../../assets';
 import {
   CustomButton,
@@ -16,26 +16,20 @@ import UserActions from '../../redux/UserRedux';
 import Schema from '../../services/ValidationServices';
 import styles from './styles/ProfileScreenStyle';
 
-class ProfileScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      imageSource: props?.profileData?.profileImage
-        ? props?.profileData?.profileImage
-        : '',
-      profileData: props?.profileData,
-      saveProfileData: props?.submitProfileData,
-    };
-  }
+const ProfileScreen = props => {
+  const [imagesource, SetImageSource] = useState('');
+  const nameRef = createRef();
+  const emailRef = createRef();
+  const genderRef = createRef();
+  const phoneNoRef = createRef();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    SetImageSource(
+      props?.profileData?.profileImage ? props?.profileData?.profileImage : '',
+    );
+  }, [props?.profileData]);
 
-  inputRef = {
-    name: createRef(),
-    email: createRef(),
-    gender: createRef(),
-    phoneNo: createRef(),
-  };
-
-  renderNameTextInput = ({
+  const renderNameTextInput = ({
     handleChange,
     handleBlur,
     errors,
@@ -43,7 +37,7 @@ class ProfileScreen extends React.Component {
     values,
   }) => (
     <CustomTextInput
-      ref={this.inputRef.name}
+      ref={nameRef}
       autoCapitalize={'words'}
       style={styles.textInput}
       placeholder={Strings.namePlaceholder}
@@ -53,11 +47,11 @@ class ProfileScreen extends React.Component {
       error={touched.name && errors.name}
       onBlur={handleBlur('name')}
       onChangeText={handleChange('name')}
-      onSubmitEditing={() => this.inputRef.email.current.focus()}
+      onSubmitEditing={() => emailRef.current.focus()}
     />
   );
 
-  renderEmailTextInput = ({
+  const renderEmailTextInput = ({
     handleChange,
     handleBlur,
     errors,
@@ -65,7 +59,7 @@ class ProfileScreen extends React.Component {
     values,
   }) => (
     <CustomTextInput
-      ref={this.inputRef.email}
+      ref={emailRef}
       autoCapitalize={'none'}
       keyboardType={'email-address'}
       style={styles.textInput}
@@ -75,11 +69,11 @@ class ProfileScreen extends React.Component {
       error={touched.email && errors.email}
       onChangeText={handleChange('email')}
       onBlur={handleBlur('email')}
-      onSubmitEditing={() => this.inputRef.gender.current.focus()}
+      onSubmitEditing={() => genderRef.current.focus()}
     />
   );
 
-  renderGenderTextInput = ({
+  const renderGenderTextInput = ({
     handleChange,
     handleBlur,
     errors,
@@ -87,7 +81,7 @@ class ProfileScreen extends React.Component {
     values,
   }) => (
     <CustomTextInput
-      ref={this.inputRef.gender}
+      ref={genderRef}
       style={styles.textInput}
       placeholder={Strings.genderPlaceholder}
       value={values.gender}
@@ -96,11 +90,11 @@ class ProfileScreen extends React.Component {
       keyboardType={'default'}
       onBlur={handleBlur('gender')}
       onChangeText={handleChange('gender')}
-      onSubmitEditing={() => this.inputRef.phoneNo.current.focus()}
+      onSubmitEditing={() => phoneNoRef.current.focus()}
     />
   );
 
-  renderPhoneNoTextInput = ({
+  const renderPhoneNoTextInput = ({
     handleChange,
     handleBlur,
     errors,
@@ -109,7 +103,7 @@ class ProfileScreen extends React.Component {
     handleSubmit,
   }) => (
     <CustomTextInput
-      ref={this.inputRef.phoneNo}
+      ref={phoneNoRef}
       style={styles.textInput}
       placeholder={Strings.phoneNoPlaceholder}
       value={values.phoneNo}
@@ -122,20 +116,19 @@ class ProfileScreen extends React.Component {
     />
   );
 
-  openImagePicker = () => {
+  const openImagePicker = () => {
     ImagePicker.openPicker({
       width: 300,
       height: 400,
       cropping: true,
     }).then(image => {
-      this.setState({ imageSource: image.path });
+      SetImageSource(image.path);
     });
   };
 
-  userSubmit = values => {
-    const { imageSource } = this.state;
+  const userSubmit = values => {
     const { name, email, gender, phoneNo } = values;
-    if (imageSource?.length === 0) {
+    if (imagesource?.length === 0) {
       Toast.show({
         text: Strings.noProfilePic,
         buttonText: Strings.ok,
@@ -145,22 +138,30 @@ class ProfileScreen extends React.Component {
       return;
     }
     Keyboard.dismiss();
-    this.state.saveProfileData(name, email, gender, phoneNo, imageSource);
-    this.props.navigation.goBack();
+    dispatch(
+      UserActions.userProfileDataSave(
+        name,
+        email,
+        gender,
+        phoneNo,
+        imagesource,
+      ),
+    );
+    props.navigation.goBack();
   };
 
-  isFormFilled = values =>
+  const isFormFilled = values =>
     values?.name?.length ||
     values?.email?.length ||
     values?.gender?.length ||
     values?.phoneNo?.length;
-  renderSubmitButton = ({ values, isValid, handleSubmit }) => {
-    const { imageSource } = this.state;
-    const isFormFilled = this.isFormFilled(values);
+
+  const renderSubmitButton = ({ values, isValid, handleSubmit }) => {
+    const isFormFilledCheck = isFormFilled(values);
     return (
       <View style={styles.buttonContainer}>
         <CustomButton
-          disabled={!isValid || !isFormFilled || !imageSource.length}
+          disabled={!isValid || !isFormFilledCheck || !imagesource.length}
           title={Strings.submit}
           onPress={handleSubmit}
         />
@@ -168,65 +169,61 @@ class ProfileScreen extends React.Component {
     );
   };
 
-  renderFormInputs = params => (
+  const renderFormInputs = params => (
     <View style={styles.formInputs}>
-      {this.renderNameTextInput(params)}
-      {this.renderEmailTextInput(params)}
-      {this.renderGenderTextInput(params)}
-      {this.renderPhoneNoTextInput(params)}
-      {this.renderSubmitButton(params)}
+      {renderNameTextInput(params)}
+      {renderEmailTextInput(params)}
+      {renderGenderTextInput(params)}
+      {renderPhoneNoTextInput(params)}
+      {renderSubmitButton(params)}
     </View>
   );
 
-  renderRegisterForm = () => {
+  const renderRegisterForm = () => {
+    const { name, email, gender, phoneNo } = props?.profileData;
     return (
       <Formik
         initialValues={{
-          name: this.state?.profileData?.name,
-          email: this.state?.profileData?.email,
-          gender: this.state?.profileData?.gender,
-          phoneNo: this.state?.profileData?.phoneNo,
+          name: name,
+          email: email,
+          gender: gender,
+          phoneNo: phoneNo,
         }}
         validationSchema={Schema.register}
         onSubmit={values => {
-          this.userSubmit(values);
-        }}>
-        {({ ...params }) => this.renderFormInputs(params)}
+          userSubmit(values);
+        }}
+      >
+        {({ ...params }) => renderFormInputs(params)}
       </Formik>
     );
   };
 
-  renderForm = () => {
-    const { imageSource } = this.state;
+  const renderForm = () => {
     return (
       <View style={styles.formContainer}>
-        <ProfileImage
-          imageSource={imageSource}
-          onPress={this.openImagePicker}
-        />
-        {this.renderRegisterForm()}
+        <ProfileImage imageSource={imagesource} onPress={openImagePicker} />
+        {renderRegisterForm()}
       </View>
     );
   };
-
-  render() {
-    return (
-      <Container style={[styles.whiteContainerCenter]}>
-        <CustomHeader
-          left
-          title={Strings.profile}
-          leftIcon={Icons.back}
-          leftOnPress={() => this.props.navigation.goBack()}
-        />
-        <Content
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.contentContainerStyle}>
-          {this.renderForm()}
-        </Content>
-      </Container>
-    );
-  }
-}
+  return (
+    <Container style={[styles.whiteContainerCenter]}>
+      <CustomHeader
+        left
+        title={Strings.profile}
+        leftIcon={Icons.back}
+        leftOnPress={() => props.navigation.goBack()}
+      />
+      <Content
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.contentContainerStyle}
+      >
+        {renderForm()}
+      </Content>
+    </Container>
+  );
+};
 
 const mapStateToProps = state => ({
   profileData: state.user.userProfileData,
@@ -235,7 +232,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     submitProfileData: (name, email, gender, phoneNo, profileImage) => {
-      dispatch(UserActions.userProfileDataSave(name, email, gender, phoneNo, profileImage));
+      dispatch(
+        UserActions.userProfileDataSave(
+          name,
+          email,
+          gender,
+          phoneNo,
+          profileImage,
+        ),
+      );
     },
   };
 };

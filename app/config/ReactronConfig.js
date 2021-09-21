@@ -1,10 +1,10 @@
 import Reactotron from 'reactotron-react-native';
-import {reactotronRedux as reduxPlugin} from 'reactotron-redux';
+import { reactotronRedux as reduxPlugin } from 'reactotron-redux';
 import sagaPlugin from 'reactotron-redux-saga';
 
 if (__DEV__) {
   // https://github.com/infinitered/reactotron for more options!
-  Reactotron.configure({name: 'MindTalesChat'})
+  Reactotron.configure({ name: 'MindTalesChat' })
     .useReactNative()
     .use(reduxPlugin())
     .use(sagaPlugin())

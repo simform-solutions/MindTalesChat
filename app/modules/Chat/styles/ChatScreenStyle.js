@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {ApplicationStyles} from '../../../theme';
+import { StyleSheet } from 'react-native';
+import { ApplicationStyles } from '../../../theme';
 
 const styles = StyleSheet.create({
   ...ApplicationStyles.screen,

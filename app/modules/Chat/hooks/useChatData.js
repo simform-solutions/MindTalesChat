@@ -1,8 +1,8 @@
-import {useCallback, useEffect, useState} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {GiftedChat} from 'react-native-gifted-chat';
-import {useDispatch, useSelector} from 'react-redux';
-import ChatActions, {ChatSelectors} from '../../../redux/ChatRedux';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { GiftedChat } from 'react-native-gifted-chat';
+import { useDispatch, useSelector } from 'react-redux';
+import ChatActions, { ChatSelectors } from '../../../redux/ChatRedux';
 
 const useChatdata = () => {
   const navigation = useNavigation();
@@ -22,7 +22,7 @@ const useChatdata = () => {
 
   useEffect(() => {
     dispatch(
-      ChatActions.chatRequest({_id: chatUser?.bin_id}, response => {
+      ChatActions.chatRequest({ _id: chatUser?.bin_id }, response => {
         setMessages(response ? reverseData(response) : []);
       }),
     );

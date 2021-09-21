@@ -1,7 +1,7 @@
 import React from 'react';
-import {Provider} from 'react-redux';
-import {LogBox} from 'react-native';
-import {PersistGate} from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { LogBox } from 'react-native';
+import { PersistGate } from 'redux-persist/integration/react';
 import './config/ReactronConfig';
 import reduxStore from './redux/Store';
 import RootContainer from './RootContainer';

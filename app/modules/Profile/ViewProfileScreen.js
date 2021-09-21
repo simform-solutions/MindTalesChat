@@ -1,8 +1,9 @@
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/native';
 import { Container, Content } from 'native-base';
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
+
 import { Icons, Images } from '../../assets';
 import { CustomButton, CustomHeader } from '../../components';
 import { NavigationRoutes, Strings } from '../../constants';
@@ -20,7 +21,7 @@ const ViewProfileScreen = () => {
     </View>
   );
 
-  const profileBottomView = userProfileData => (
+  const profileBottomView = () => (
     <View style={styles.footer}>
       {renderView('Name', userProfileData?.name)}
       {renderView('Email', userProfileData?.email)}
@@ -57,7 +58,8 @@ const ViewProfileScreen = () => {
       />
       <Content
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.contentContainerStyle}>
+        contentContainerStyle={styles.contentContainerStyle}
+      >
         {renderProfileImage()}
         {profileBottomView(userProfileData)}
         <CustomButton

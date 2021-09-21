@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {Colors, Fonts, horizontalScale, moderateScale} from '../../theme';
+import { StyleSheet } from 'react-native';
+import { Colors, Fonts, horizontalScale, moderateScale } from '../../theme';
 
 export default StyleSheet.create({
   backButtonStyle: {

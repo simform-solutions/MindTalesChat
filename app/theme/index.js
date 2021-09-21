@@ -7,7 +7,7 @@ import {
   verticalScale,
   horizontalScale,
 } from './Metrics';
-import {Images, Icons} from '../assets';
+import { Images, Icons } from '../assets';
 import ApplicationStyles from './ApplicationStyles';
 
 export {

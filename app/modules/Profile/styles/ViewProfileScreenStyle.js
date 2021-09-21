@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   ApplicationStyles,
   Colors,
@@ -6,6 +6,7 @@ import {
   moderateScale,
   scale,
 } from '../../../theme';
+import colors from '../../../theme/Colors';
 
 const styles = StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   footer: {
     width: '100%',
     borderRadius: scale(15),
-    backgroundColor: '#f3e8ff',
+    backgroundColor: colors.purpule,
     justifyContent: 'center',
     padding: scale(20),
   },

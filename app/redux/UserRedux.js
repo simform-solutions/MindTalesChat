@@ -1,8 +1,8 @@
-import {createActions, createReducer} from 'reduxsauce';
+import { createActions, createReducer } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
 /* ------------- Types and Action Creators ------------- */
-const {Types, Creators} = createActions({
+const { Types, Creators } = createActions({
   userRequest: ['payload'],
   userSuccess: ['data'],
   userFailure: ['error'],
@@ -39,7 +39,7 @@ export const UserSelectors = {
 
 /* ------------- Reducers ------------- */
 // request the data from an api
-export const request = state => state.merge({fetching: true});
+export const request = state => state.merge({ fetching: true });
 
 export const userProfileRequest = state =>
   state.merge({
@@ -49,16 +49,16 @@ export const userProfileRequest = state =>
 
 // successful api lookup
 export const success = (state, action) => {
-  const {data} = action;
+  const { data } = action;
   return state.merge({
     user: data,
   });
 };
 
 export const userProfileDataSave = (state, action) => {
-  const {name, email, gender, phoneNo, profileImage} = action;
+  const { name, email, gender, phoneNo, profileImage } = action;
   const updateProfileData = Object.assign(
-    {...state?.userProfileData},
+    { ...state?.userProfileData },
     {
       name: name,
       email: email,
@@ -74,12 +74,12 @@ export const userProfileDataSave = (state, action) => {
 
 // Something went wrong somewhere.
 export const failure = (state, action) => {
-  const {error} = action;
-  return state.merge({fetching: false, error});
+  const { error } = action;
+  return state.merge({ fetching: false, error });
 };
 
 export const userProfileFailure = (state, error) => {
-  return state.merge({fetchingUserProfile: false, errorInProfile: error});
+  return state.merge({ fetchingUserProfile: false, errorInProfile: error });
 };
 
 /* ------------- Hookup Reducers To Types ------------- */
