@@ -11,7 +11,6 @@ import ProfileScreen from '../modules/Profile/ProfileScreen';
 import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
 import SplashScreen from '../modules/Splash/SplashScreen';
 import { Colors, Icons } from '../theme';
-import { navigationRef } from './services/navigationServices';
 import styles from './styles/AppNavigationStyles';
 
 const RootStack = createStackNavigator();
@@ -160,7 +159,7 @@ const HomeStack = () => {
 // Manifest of possible screens
 const AppNavigation = () => {
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer>
       <RootStack.Navigator screenOptions={stackScreenOptions}>
         <RootStack.Screen
           name={NavigationRoutes.SplashScreen}
