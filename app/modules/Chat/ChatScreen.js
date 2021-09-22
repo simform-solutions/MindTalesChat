@@ -57,8 +57,8 @@ const ChatScreen = () => {
       <CustomHeader
         left
         title={chatUser.name}
-        leftIcon={Icons.back}
-        leftOnPress={() => navigation.goBack()}
+        leftIcon={Icons.menu}
+        leftOnPress={() => navigation.openDrawer()}
       />
       <ChatView />
     </Container>

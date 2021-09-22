@@ -8,7 +8,7 @@ const RootContainer = () => {
   return (
     <Root>
       <View style={[ApplicationStyles.screen.mainContainer]}>
-        <StatusBar barStyle='dark-content' />
+        <StatusBar barStyle="dark-content" />
         <AppNavigation />
       </View>
     </Root>

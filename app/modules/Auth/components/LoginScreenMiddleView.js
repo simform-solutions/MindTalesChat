@@ -92,7 +92,7 @@ const useLoginScreenMiddleView = () => {
       storeData('userLoginData', values);
       navigation.reset({
         index: 0,
-        routes: [{ name: NavigationRoutes.HomeStack }],
+        routes: [{ name: NavigationRoutes.ChatStack }],
       });
     },
     [navigation],

@@ -1,4 +1,3 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
@@ -10,11 +9,13 @@ import HomeScreen from '../modules/Home/HomeScreen';
 import ProfileScreen from '../modules/Profile/ProfileScreen';
 import ViewProfileScreen from '../modules/Profile/ViewProfileScreen';
 import SplashScreen from '../modules/Splash/SplashScreen';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Colors, Icons } from '../theme';
 import styles from './styles/AppNavigationStyles';
+import colors from '../theme/Colors';
 
 const RootStack = createStackNavigator();
-const DashBoardStack = createBottomTabNavigator();
+// const DashBoardStack = createBottomTabNavigator();
 const renderImage = () => {
   return <Image source={Icons.back} />;
 };
@@ -59,100 +60,42 @@ const ProfileStack = () => {
     </RootStack.Navigator>
   );
 };
+function CustomDrawerContent() {
+  return <HomeScreen />;
+}
 const ChatStack = () => {
+  const Drawer = createDrawerNavigator();
   return (
-    <RootStack.Navigator screenOptions={stackScreenOptions}>
-      <RootStack.Screen
-        name={NavigationRoutes.HomeScreen}
-        options={{ headerShown: false }}
-        component={HomeScreen}
-      />
-      <RootStack.Screen
+    <Drawer.Navigator
+      initialRouteName={NavigationRoutes.ChatScreen}
+      screenOptions={{
+        drawerStyle: {
+          backgroundColor: colors.lightblue,
+          width: 240,
+        },
+      }}
+      drawerContent={props => <CustomDrawerContent {...props} />}
+    >
+      <Drawer.Screen
         name={NavigationRoutes.ChatScreen}
         options={{ headerShown: false }}
         component={ChatScreen}
-      />
-    </RootStack.Navigator>
-  );
-};
-const getTabBarVisibility = route => {
-  const routeName = route.state
-    ? route.state.routes[route.state.index].name
-    : '';
-
-  if (
-    routeName === NavigationRoutes.ChatScreen ||
-    routeName === NavigationRoutes.ProfileScreen
-  ) {
-    return false;
-  }
-
-  return true;
-};
-const HomeStack = () => {
-  return (
-    <DashBoardStack.Navigator
-      tabBarOptions={{
-        activeTintColor: Colors.primary,
-        inactiveTintColor: Colors.secondary,
-        upperCaseLabel: true,
-        tabStyle: {
-          width: 'auto',
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
-        labelStyle: {
-          fontSize: 15,
-          margin: 0,
-          fontWeight: '500',
-          padding: 0,
-        },
-        style: {
-          shadowOffset: { width: 0, height: 2 },
-          shadowColor: Colors.tabBarShadow,
-          shadowOpacity: 0.2,
-          shadowRadius: 7,
-          elevation: 7,
-        },
-      }}
-    >
-      <DashBoardStack.Screen
-        name={'Chat'}
-        options={({ route }) => ({
-          tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Image
-                style={[
-                  styles.tabIcon,
-                  { tintColor: focused ? Colors.primary : Colors.secondary },
-                ]}
-                source={Icons.newChat}
-              />
-            );
+        initialParams={{
+          user: {
+            _id: 2,
+            avatar: 'https://i.pravatar.cc/150?img=4y',
+            bin_id: '613a1aa79548541c29aed6c0',
+            name: 'Michael',
+            username: '@michael',
           },
-        })}
-        component={ChatStack}
+        }}
       />
-      <DashBoardStack.Screen
-        name={'Profile'}
-        options={({ route }) => ({
-          tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Image
-                style={[
-                  styles.tabIcon,
-                  { tintColor: focused ? Colors.primary : Colors.secondary },
-                ]}
-                source={Icons.profile}
-              />
-            );
-          },
-        })}
+      <Drawer.Screen
+        name={NavigationRoutes.ProfileStack}
+        options={{ headerShown: false }}
         component={ProfileStack}
       />
-    </DashBoardStack.Navigator>
+    </Drawer.Navigator>
   );
 };
 
@@ -172,9 +115,9 @@ const AppNavigation = () => {
           component={AuthStack}
         />
         <RootStack.Screen
-          name={NavigationRoutes.HomeStack}
+          name={NavigationRoutes.ChatStack}
           options={{ headerShown: false }}
-          component={HomeStack}
+          component={ChatStack}
         />
       </RootStack.Navigator>
     </NavigationContainer>

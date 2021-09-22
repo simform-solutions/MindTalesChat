@@ -52,9 +52,12 @@ const ViewProfileScreen = () => {
     <Container style={[styles.whiteContainer]}>
       <CustomHeader
         right
+        left
         title={Strings.viewProfile}
         rightIcon={Icons.editProfile}
         rightOnPress={() => navigation.navigate(NavigationRoutes.ProfileScreen)}
+        leftIcon={Icons.back}
+        leftOnPress={() => navigation.goBack()}
       />
       <Content
         showsVerticalScrollIndicator={false}

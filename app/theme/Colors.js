@@ -13,6 +13,7 @@ const colors = {
   tabBarShadow: '#000000',
   gray: '#808080',
   purpule: '#f3e8ff',
+  lightblue: '#c6cbef',
 };
 
 export default colors;

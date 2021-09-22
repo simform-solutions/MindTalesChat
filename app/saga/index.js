@@ -1,6 +1,6 @@
 import { all, takeLatest } from 'redux-saga/effects';
 import API from '../services/Api';
-import { ChatTypes } from '../redux/ChatRedux';
+import { ChatTypes } from '../redux/ChatRedux/reducer';
 import { ChatData, UpdateChatData } from './Chat';
 import { UserChatList } from './User';
 import { UserTypes } from '../redux/UserRedux';

@@ -13,7 +13,7 @@ const SplashScreen = () => {
         if (loginData) {
           navigation.reset({
             index: 0,
-            routes: [{ name: NavigationRoutes.HomeStack }],
+            routes: [{ name: NavigationRoutes.ChatStack }],
           });
         } else {
           navigation.reset({
@@ -30,7 +30,7 @@ const SplashScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle='dark-content' />
+      <StatusBar barStyle="dark-content" />
       <Text style={styles.textStyle}>{'MindTales Chat'}</Text>
     </View>
   );
