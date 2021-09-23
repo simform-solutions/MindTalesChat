@@ -1,8 +1,7 @@
 import { Container, Content } from 'native-base';
 import React, { useEffect } from 'react';
-import { FlatList, Image, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { CustomHeader } from '../../components';
+import { FlatList, Image, Text, View, TouchableOpacity } from 'react-native';
+import { CustomButton, CustomHeader } from '../../components';
 import { NavigationRoutes, Strings } from '../../constants';
 import { Images } from '../../theme';
 import styles from './styles/HomeScreenStyle';
@@ -14,11 +13,10 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const userList = useSelector(UserSelectors.userData);
-
+  const userProfileData = useSelector(UserSelectors.userProfileData);
   useEffect(() => {
     dispatch({ type: UserTypes.USER_REQUEST });
   }, [dispatch]);
-
   // displaying static user to move to next screen where we get dynamic messages
   const renderUserRow = item => {
     return (
@@ -42,9 +40,32 @@ const HomeScreen = () => {
 
   return (
     <Container>
-      <CustomHeader right title={Strings.chat} />
+      <CustomHeader title={''} />
+      <View style={styles.profileviewContainer}>
+        <Image
+          source={
+            userProfileData?.profileImage
+              ? { uri: userProfileData?.profileImage }
+              : Images.avatar
+          }
+          style={styles.profilePic}
+        />
+        <View style={styles.profileitemContainer}>
+          <Text style={styles.nameStyle}>{userProfileData?.name}</Text>
+          <Text style={styles.profilenameStyle}>{userProfileData?.email}</Text>
+        </View>
+
+        <CustomButton
+          title={Strings.viewProfile}
+          style={styles.profilebuttonStyle}
+          onPress={() => navigation.navigate(NavigationRoutes.ProfileStack)}
+        />
+      </View>
       <View style={styles.whiteContainer}>
         <Content>
+          <Text numberOfLines={1} ellipsizeMode={'tail'} style={styles.title}>
+            {Strings.chat}
+          </Text>
           <FlatList
             data={userList?.user}
             renderItem={({ item }) => renderUserRow(item)}

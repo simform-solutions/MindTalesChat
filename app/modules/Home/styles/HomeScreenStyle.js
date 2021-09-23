@@ -1,5 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { ApplicationStyles, Colors, scale } from '../../../theme';
+import {
+  ApplicationStyles,
+  Colors,
+  Fonts,
+  scale,
+  verticalScale,
+} from '../../../theme';
 
 const styles = StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -24,6 +30,28 @@ const styles = StyleSheet.create({
     fontSize: scale(12),
     color: Colors.gray,
     marginEnd: scale(20),
+  },
+  title: {
+    maxWidth: scale(200),
+    fontSize: verticalScale(16),
+    fontFamily: Fonts.type.bold,
+    color: Colors.black,
+    paddingHorizontal: scale(16),
+    paddingVertical: scale(4),
+  },
+  profileviewContainer: {
+    flexDirection: 'column',
+    padding: scale(8),
+    backgroundColor: Colors.purpule,
+    alignItems: 'center',
+  },
+  profileitemContainer: { padding: scale(6), alignItems: 'center' },
+  profilenameStyle: {
+    fontSize: scale(12),
+    color: Colors.gray,
+  },
+  profilebuttonStyle: {
+    height: scale(40),
   },
 });
 
