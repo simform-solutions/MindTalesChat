@@ -11,6 +11,8 @@ export const INITIAL_STATE = Immutable({
 });
 
 /* ------------- Selectors ------------- */
+// Selectors are included in reducer file only as there isn't any necessary to move it to separate file, selectors will not consist hundreds of variable
+// and if there is any reducer where we need 100+ variable we can divide it in different sub modules and reducers. 
 export const ChatSelectors = {
   chatList: state => state.chat,
 };
