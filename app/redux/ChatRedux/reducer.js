@@ -1,16 +1,6 @@
-import { createActions, createReducer } from 'reduxsauce';
+import { createReducer } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
-
-/* ------------- Types and Action Creators ------------- */
-const { Types, Creators } = createActions({
-  chatRequest: ['payload', 'chatRequestSuccess'],
-  chatUpdateRequest: ['payload'],
-  chatSuccess: ['data'],
-  chatFailure: ['error'],
-});
-
-export const ChatTypes = Types;
-export default Creators;
+import { ChatTypes } from './action';
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
@@ -52,8 +42,8 @@ export const failure = (state, action) => {
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const chatReducer = createReducer(INITIAL_STATE, {
-  [Types.CHAT_REQUEST]: request,
-  [Types.CHAT_SUCCESS]: success,
-  [Types.CHAT_FAILURE]: failure,
-  [Types.CHAT_UPDATE_REQUEST]: chatUpdateRequest,
+  [ChatTypes.CHAT_REQUEST]: request,
+  [ChatTypes.CHAT_SUCCESS]: success,
+  [ChatTypes.CHAT_FAILURE]: failure,
+  [ChatTypes.CHAT_UPDATE_REQUEST]: chatUpdateRequest,
 });

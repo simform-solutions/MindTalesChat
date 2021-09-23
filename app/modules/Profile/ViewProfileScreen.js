@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { Icons, Images } from '../../assets';
 import { CustomButton, CustomHeader } from '../../components';
 import { NavigationRoutes, Strings } from '../../constants';
-import { UserSelectors } from '../../redux/UserRedux';
+import { UserSelectors } from '../../redux/UserRedux/reducer';
 import { clearData } from '../../services/AsyncStorageService';
 import styles from './styles/ViewProfileScreenStyle';
 
@@ -45,7 +45,10 @@ const ViewProfileScreen = () => {
 
   async function handleLogout() {
     await clearData('userLoginData');
-    navigation.navigate(NavigationRoutes.AuthStack);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: NavigationRoutes.AuthStack }],
+    });
   }
 
   return (

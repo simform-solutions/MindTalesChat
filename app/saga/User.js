@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects';
-import UserActions from '../redux/UserRedux';
+import UserActions from '../redux/UserRedux/action';
 import UserData from '../config/ChatUser.json';
 
 export function* UserChatList() {
