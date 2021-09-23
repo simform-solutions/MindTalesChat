@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects';
-import ChatActions from '../redux/ChatRedux/reducer';
+import ChatActions from '../redux/ChatRedux/action';
 import { getError } from '../services/Utils';
 
 function* handleResponse(response, action) {

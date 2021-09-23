@@ -1,9 +1,9 @@
 import { all, takeLatest } from 'redux-saga/effects';
 import API from '../services/Api';
-import { ChatTypes } from '../redux/ChatRedux/reducer';
+import { ChatTypes } from '../redux/ChatRedux/action';
 import { ChatData, UpdateChatData } from './Chat';
 import { UserChatList } from './User';
-import { UserTypes } from '../redux/UserRedux';
+import { UserTypes } from '../redux/UserRedux/action';
 
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.

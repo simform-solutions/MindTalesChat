@@ -2,7 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { useDispatch, useSelector } from 'react-redux';
-import ChatActions, { ChatSelectors } from '../../../redux/ChatRedux/reducer';
+import { ChatSelectors } from '../../../redux/ChatRedux/reducer';
+import ChatActions from '../../../redux/ChatRedux/action';
 
 const useChatdata = () => {
   const navigation = useNavigation();

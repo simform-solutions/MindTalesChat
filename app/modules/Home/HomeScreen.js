@@ -6,7 +6,8 @@ import { NavigationRoutes, Strings } from '../../constants';
 import { Images } from '../../theme';
 import styles from './styles/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
-import { UserSelectors, UserTypes } from '../../redux/UserRedux';
+import { UserSelectors } from '../../redux/UserRedux/reducer';
+import { UserTypes } from '../../redux/UserRedux/action';
 import { useDispatch, useSelector } from 'react-redux';
 
 const HomeScreen = () => {

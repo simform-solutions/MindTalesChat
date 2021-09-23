@@ -12,7 +12,7 @@ import {
   ProfileImage,
 } from '../../components';
 import { Strings } from '../../constants';
-import UserActions from '../../redux/UserRedux';
+import UserActions from '../../redux/UserRedux/action';
 import Schema from '../../services/ValidationServices';
 import styles from './styles/ProfileScreenStyle';
 

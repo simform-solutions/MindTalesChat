@@ -1,21 +1,7 @@
-import { createActions, createReducer } from 'reduxsauce';
+import { createReducer } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
+import { UserTypes } from './action';
 
-/* ------------- Types and Action Creators ------------- */
-const { Types, Creators } = createActions({
-  userRequest: ['payload'],
-  userSuccess: ['data'],
-  userFailure: ['error'],
-  userProfileRequest: [''],
-  userProfileDataSave: ['name', 'email', 'gender', 'phoneNo', 'profileImage'],
-  userProfileFailure: ['error'],
-});
-
-export const UserTypes = Types;
-const UserActions = Creators;
-export default UserActions;
-
-/* ------------- Initial State ------------- */
 export const INITIAL_STATE = Immutable({
   user: null,
   userProfileData: {
@@ -85,10 +71,10 @@ export const userProfileFailure = (state, error) => {
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const userReducer = createReducer(INITIAL_STATE, {
-  [Types.USER_REQUEST]: request,
-  [Types.USER_SUCCESS]: success,
-  [Types.USER_FAILURE]: failure,
-  [Types.USER_PROFILE_REQUEST]: userProfileRequest,
-  [Types.USER_PROFILE_DATA_SAVE]: userProfileDataSave,
-  [Types.USER_PROFILE_FAILURE]: userProfileFailure,
+  [UserTypes.USER_REQUEST]: request,
+  [UserTypes.USER_SUCCESS]: success,
+  [UserTypes.USER_FAILURE]: failure,
+  [UserTypes.USER_PROFILE_REQUEST]: userProfileRequest,
+  [UserTypes.USER_PROFILE_DATA_SAVE]: userProfileDataSave,
+  [UserTypes.USER_PROFILE_FAILURE]: userProfileFailure,
 });
